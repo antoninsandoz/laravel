@@ -12,6 +12,9 @@ selon https://www.youtube.com/watch?v=JNn_tS2KpcY
 6. Ouvrir l'invite de commande et tapper:
 - composer global require "laravel/installer=~1.1"
 7. ajouter C:\Users\Kazak\AppData\Roaming\Composer\vendor\bin; (à modifier...) dans la variable Path the windows
+
+Facultatif (utilisation de svn par exemple)
+
 8. tapper dans la console:
 - composer create-project laravel/laravel
-9. Vérifier l'installation sous http://localhost/laravel.dev/laravel/public/
+9. Vérifier l'installation sous http://localhost/laravel.dev/public/
