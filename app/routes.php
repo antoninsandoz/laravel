@@ -11,7 +11,15 @@
 |
 */
 
-Route::get('/', function()
+//base page
+Route::get('/', 'HomeController@show');
+
+//user controller
+Route::resource('user', 'UserController');
+
+// the url adress don't exist
+App::missing(function()
 {
-	return View::make('hello');
+	return View::make('page_not_found');
+  //return 'page_not_found';
 });

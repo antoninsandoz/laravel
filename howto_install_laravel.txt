@@ -1,4 +1,4 @@
-Installation de Laravel:
+﻿Installation de Laravel:
 
 selon https://www.youtube.com/watch?v=JNn_tS2KpcY
 
@@ -9,9 +9,11 @@ selon https://www.youtube.com/watch?v=JNn_tS2KpcY
 3. Démarrer Apache
 4. créer le dossier C:\xampp\htdocs\laravel.dev
 5. Installer composer: aller sur https://getcomposer.org/download/ et choisir Composer-Setup.exe
+((7. ajouter C:\Users\Kazak\AppData\Roaming\Composer\vendor\bin; (à modifier...) dans la variable Path the windows))
 6. Ouvrir l'invite de commande et tapper:
+- cd C:\xampp\htdocs\laravel.dev
 - composer global require "laravel/installer=~1.1"
-7. ajouter C:\Users\Kazak\AppData\Roaming\Composer\vendor\bin; (à modifier...) dans la variable Path the windows
+
 
 Facultatif (utilisation de svn par exemple)
 

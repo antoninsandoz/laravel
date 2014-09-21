@@ -1,0 +1,18 @@
+
+				<tbody>
+				  <?php foreach($users as $user): ?>
+				    <td><?php echo $user->id; ?></td>
+				    <td class="text-primary"><strong><?php echo $user->name; ?></strong></td>
+				    <td><?php echo link_to_route('user.show', 'Voir', array($user->id), array('class' => 'btn btn-success btn-block')); ?></td>
+				    <td><?php echo link_to_route('user.edit', 'Modifier', array($user->id), array('class' => 'btn btn-warning btn-block')); ?></td>
+				    <td>
+							<?php echo Form::open(array('method' => 'DELETE', 'route' => array('user.destroy', $user->id))); ?>
+
+								<?php echo Form::submit('Supprimer', array('class' => 'btn btn-danger btn-block', 'onclick' => 'return confirm(\'Vraiment supprimer cet utilisateur ?\')')); ?>
+
+							<?php echo Form::close(); ?>
+
+				    </td>
+				    </tr>
+				  <?php endforeach; ?>
+	  		</tbody>

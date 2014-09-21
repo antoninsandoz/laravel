@@ -5,13 +5,21 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class Boxe extends Eloquent{
 
 
-	public function posts() 
+	
+	
+
+	protected $fillable = array('user_id');
+	public $timestamps = true;
+
+	public function user() 
 	{
-		return $this->hasMany('Post');
+		return $this->belongsTo('User');
 	}
+
+
 	
 	use UserTrait, RemindableTrait;
 
@@ -20,7 +28,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = 'boxes';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
