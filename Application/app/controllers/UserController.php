@@ -6,7 +6,7 @@ use Lib\Gestion\UserGestion as UserGestion;
 
 class UserController extends BaseController {
 
-    protected $create_validation;
+        protected $create_validation;
 	protected $update_validation;
 	protected $user_gestion;
 
@@ -21,20 +21,23 @@ class UserController extends BaseController {
 		$this->update_validation = $update_validation;
 		$this->user_gestion = $user_gestion;
 	}
-
+        //user list
 	public function index()
 	{
-		return View::make('index', $this->user_gestion->index(4));
+		return View::make('UserIndex', $this->user_gestion->index(4));
 	}
-
+        
+        //one user form of creation
 	public function create()
 	{
-		return View::make('create');
+		return View::make('UserCreate');
 	}
-
+        
+        //one user store on DataBase
 	public function store()
 	{
-		if ($this->create_validation->fails()) {
+            //check validation before store on DataBase
+            if ($this->create_validation->fails()) {
 		  return Redirect::route('user.create')
 		  ->withInput()
 		  ->withErrors($this->create_validation->errors());
@@ -44,17 +47,20 @@ class UserController extends BaseController {
 			->with('ok','L\'utilisateur a bien été créé.');
 		}		
 	}
-             
+        
+        //one user display     
 	public function show($id)
 	{
-		return View::make('show',  $this->user_gestion->show($id));
+		return View::make('UserShow',  $this->user_gestion->show($id));
 	}
-
+        
+        //one user edit
     public function edit($id)
 	{
-		return View::make('edit',  $this->user_gestion->edit($id));
+		return View::make('UserEdit',  $this->user_gestion->edit($id));
 	}
-
+        
+        //one user update
 	public function update($id)
 	{
 		if ($this->update_validation->fails($id)) {

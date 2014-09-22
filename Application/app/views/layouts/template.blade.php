@@ -31,8 +31,12 @@
 		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
 
 		<!-- Stylesheets -->
-		<link rel="stylesheet" type="text/css" href="css/all.css" media="all" />
-		<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+                <!-- Latest compiled and minified CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+
+
 	</head>
 	
     <body>

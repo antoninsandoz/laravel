@@ -19,10 +19,12 @@ class UserGestion implements UserGestionInterface {
 		$users = User::paginate($n);
 		return compact('users');
 	}
-
+        
+        //sore data on DataBase
 	public function store()
 	{
-		$user = new User;		
+		$user = new User;
+                //passeord is coded in classe Hash (cryptage Bcrypt)
 		$user->password = Hash::make(Input::get('password'));
 		$this->save($user);
 	}

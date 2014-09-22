@@ -1,0 +1,47 @@
+<html>
+	
+	<head>
+		<!-- If you cannot adjust the HTTP headers in your server config. -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="Content-Language" content="en-GB" />
+		<!-- HTML 5 version -->
+		<meta charset="utf-8" />
+
+		<title>Patrick Janser - Curriculum vitae / Résumé</title>
+
+		<meta name="description" content="Patrick Janser's curriculum vitae" />
+		<meta name="author" content="Patrick Janser" />
+		<meta name="copyright" content="© Patrick Janser" />
+		<meta name="keywords" content="Patrick Janser, CV, curriculum, vitae, resume" />
+
+		<meta name="og:type" content="website" />
+		<meta name="og:title" content="Patrick Janser's curriculum vitae" />
+		<meta name="og:url" content="http://patrickjanser.ch/cv/" />
+		<meta name="og:image" content="http://patrickjanser.ch/cv/images/patrick-janser.jpg?v1" />
+
+		<!-- Dublin Core meta tags are not so important as before -->
+		<meta name="DC.Title" lang="en" content="Patrick Janser's curriculum vitae" />
+		<meta name="DC.Date.created" scheme="DCTERMS.W3CDTF" content="2013-06-10" />
+		<meta name="DC.Date.modified" scheme="DCTERMS.W3CDTF" content="2013-06-12" />
+		<!-- Not very useful, but just as an example -->
+		<meta name="revisit-after" content="14 days" />
+
+		<!-- Favicon and Apple touch icon -->
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+		<!-- Stylesheets -->
+                <!-- Latest compiled and minified CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+
+
+	</head>
+	
+    <body>
+        <div class="container">
+            <?php echo $__env->yieldContent('content'); ?>
+        </div>
+    </body>
+</html>

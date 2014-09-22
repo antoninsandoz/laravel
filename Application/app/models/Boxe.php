@@ -7,10 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Boxe extends Eloquent{
 
-
-	
-	
-
+    
 	protected $fillable = array('user_id');
 	public $timestamps = true;
 
