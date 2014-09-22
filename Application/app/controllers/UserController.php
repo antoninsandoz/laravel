@@ -44,7 +44,7 @@ class UserController extends BaseController {
 			->with('ok','L\'utilisateur a bien été créé.');
 		}		
 	}
-
+             
 	public function show($id)
 	{
 		return View::make('show',  $this->user_gestion->show($id));
