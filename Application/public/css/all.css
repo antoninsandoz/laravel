@@ -1,0 +1,21 @@
+/*Body*/
+body{
+    background-color: #E9EAED;
+}
+
+/* Header */  
+.navbar{
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
+    background-color: #FFF;
+}
+
+/*Class clearfixe*/
+.clearfixe:after{
+    content:".";		/* contenu text*/
+    clear:both;			/*annule les float*/
+    display:block;		/*si element inline (balise : a,p..) on les force à block*/
+    width:0px;			/* Pour qu'il soit à 0 hauteur largeur pas de modif de design*/
+    height:0px;
+    overflow:hidden;	/*On cache le text qui déborde de la balise (0px)*/
+}
+

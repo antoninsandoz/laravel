@@ -24,6 +24,8 @@ class CreateUsersTable extends Migration {
 			$table->integer('subscription_date')->unsigned(); //->unsigned() only positive values
 			$table->integer('creation_date')->unsigned(); //format date timestamp UNIX => format : 428389200 
 			$table->string('Languages_iso', 2); // fr, en, de, ... etc..
+                        
+                        
 		});
 		
 		
