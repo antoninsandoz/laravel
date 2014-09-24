@@ -9,13 +9,71 @@ body{
     background-color: #FFF;
 }
 
-/*Class clearfixe*/
-.clearfixe:after{
-    content:".";		/* contenu text*/
-    clear:both;			/*annule les float*/
-    display:block;		/*si element inline (balise : a,p..) on les force à block*/
-    width:0px;			/* Pour qu'il soit à 0 hauteur largeur pas de modif de design*/
-    height:0px;
-    overflow:hidden;	/*On cache le text qui déborde de la balise (0px)*/
+/*Global*/
+.box{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+    background: #fff;
 }
 
+/*Main*/
+
+.main{
+    margin-top: 50px; //for compensation of navigation bar top
+}
+
+/*Wall*/
+
+
+/*Wall*/
+.wall{
+    min-height: 100px; 
+}
+
+.circle{
+    margin-top: 15px;
+    background: #428bca;
+    padding: 15px 18px;
+    border-radius: 30px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    float: left;
+}
+
+.wall div.row div p{
+    color:#777;
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+    padding-left: 7px;
+}
+
+.wall div.row div.user_localisation  span{
+    padding: 5px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+
+.circle span{
+    color: white;
+}
+
+/*Footer*/
+
+.footer{
+    margin-top: 15px;
+    background-color: fff;
+    position: relative;
+    width: 100%;
+    bottom: 0px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),0 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.logo_footer{
+    float: right;
+}
