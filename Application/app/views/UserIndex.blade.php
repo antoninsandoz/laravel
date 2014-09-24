@@ -41,29 +41,25 @@
 
     <div class="row">
           
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="col-xs-6 col-sm-2 col-md-2">
             <div class="user_image"></div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-            <h2>Name</h2>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="user_localisation">
-                <span>Suisse</span>
-                <span>|</span>
-                <span>Geneva</span>
-            </div>
+        <div class="name col-xs-6 col-sm-4 col-md-4">
+            <h3>Name</h3>
+            <span>Suisse</span>
+            <span> | </span>
+            <span>Geneva</span>
         </div>
           
-        <div class="col-xs-4 col-sm-2 col-md-1">
+        <div class="number col-xs-4 col-sm-2 col-md-2">
           <div class="circle" ><span class="text-muted">10</span></div>
           <p>Likes</p>
         </div>
-        <div class="col-xs-4 col-sm-2 col-md-1">
+        <div class="number col-xs-4 col-sm-2 col-md-2">
           <div class="circle" ><span class="text-muted">10</span></div>
           <p>Pict./month</p>
         </div>
-        <div class="col-xs-4 col-sm-2 col-md-1">
+        <div class="number col-xs-4 col-sm-2 col-md-2">
           <div class="circle" ><span class="text-muted">10</span></div>
           <p>Pictures<p>
         </div>

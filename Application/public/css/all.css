@@ -29,26 +29,47 @@ body{
 
 /*Wall*/
 .wall{
-    min-height: 100px; 
+    min-height: 120px; 
+}
+
+.user_image{
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    background-image: url(../img/user_default.png);
+    border-radius: 50px;
+    background-size: 100px;
 }
 
 .circle{
     margin-top: 15px;
     background: #428bca;
     padding: 15px 18px;
-    border-radius: 30px;
+    border-radius: 10px;
     color: white;
     font-weight: bold;
     font-size: 16px;
     float: left;
 }
 
+.wall div.row div.name {
+    margin-bottom: 30px; */
+}
+
 .wall div.row div p{
-    color:#777;
+    color: #9A9A9A;
     float: left;
     width: 100%;
     margin-top: 5px;
     padding-left: 7px;
+}
+
+.wall div.row div.number span{
+    font-size: 20px;
+}
+
+.wall div.row div.name span{
+    font-size: 18px;
 }
 
 .wall div.row div.user_localisation  span{
