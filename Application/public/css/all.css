@@ -2,13 +2,7 @@
 body{
     background-color: #E9EAED;
 }
-
-/* Header */  
-.navbar{
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
-    background-color: #FFF;
-}
-
+/**************************/
 /*Global*/
 .box{
     margin-top: 15px;
@@ -18,14 +12,31 @@ body{
     background: #fff;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
+/**************************/
+/* Header */  
+.navbar{
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
+    background-color: #FFF;
+}
+
+
+.message_box{
+    padding: 15px;
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/**************************/
 /*Main*/
 
 .main{
     margin-top: 50px; //for compensation of navigation bar top
 }
-
-/*Wall*/
-
 
 /*Wall*/
 .wall{
@@ -50,6 +61,10 @@ body{
     font-weight: bold;
     font-size: 16px;
     float: left;
+}
+
+.circle span{
+    color: white;
 }
 
 .wall div.row div.name {
@@ -78,11 +93,142 @@ body{
     font-size: 20px;
 }
 
-
-
-.circle span{
-    color: white;
+/**************************/
+/*Wall image Block*/
+.wall_block {
+    /*SIZE Media query*/
+    margin-right: 15px;
+    padding: 0px;
+    float: left;
 }
+
+/*hover*/
+.wall_block div.hover{
+    
+    width: 210px;
+    height: 140px;
+    position: absolute; 
+    
+}
+
+.wall_block div.hover:hover{
+    position: absolute;   
+    
+}
+
+.wall_block div.hover div{
+    display: none;
+}
+
+.wall_block div.hover:hover div{
+    display: block;
+    
+}
+
+.wall_block div.hover button{
+    margin: 10px;
+    float: right;
+    background: linear-gradient(to bottom,#428bca,#1C6BAF 100%);
+    border-color: #000;
+}
+
+.wall_block div.hover button span{
+    opacity: 1;
+}
+
+.wall_block div.hover button:hover{
+
+    background: linear-gradient(to bottom,#428bca,#1C6BAF 100%);
+    border-color: #000;
+}
+
+.wall_block img{
+    /*SIZE Media query*/
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+/*Wall image info Block*/
+.wall_block div.img_info{
+    padding: 15px;
+}
+
+.wall_block div p.border{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.wall_block div.img_info p.name{
+     color: #444;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.wall_block div.img_info p.date{
+    font-size: 11px;
+    color: #aaa;
+    font-weight: normal;
+
+}
+
+.wall_block div.img_info p span.glyphicon{
+    opacity: 0.5;
+}
+
+.wall_block div.img_info p.like_comment{
+    
+}
+
+.wall_block div.img_info p.like_comment span{
+    font-weight: bold;
+    color: #888;
+    padding-left: 5px;
+    
+}
+
+.wall_block div.img_info p.like_comment span.like{
+    margin-right: 10px;
+}
+.wall_block div.img_info p.like_comment span.comment{
+    margin-right: 10px;
+}
+
+.wall_block div.img_info p.legend{
+    
+    
+}
+
+
+/*MEDIA QUERY SIZE*/
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/*Wall image Block*/
+.wall_block, 
+.wall_block img {
+
+ 
+}
+
+
+
+@media (max-width: 768px) {  }
+
+@media (min-width: 768px) and (max-width: 992px ) {  }
+
+@media (min-width: 992px ) and (max-width: 1200px ) { 
+
+.wall_block, 
+.wall_block img,
+.wall_block div.hover{
+    width: 210px;  
+}
+
+}
+
+@media (min-width: @screen-lg-min) {  }
+
+
 
 /*Footer*/
 

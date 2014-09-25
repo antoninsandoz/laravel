@@ -69,7 +69,59 @@
 </div>
 
 
+<!-- If no images -->
+<!--
+<div class=" box container-fluid clearfix ">
+    <p class="message_box bg-primary">Sorry they are no images to display</p>
+</div>
+-->
 
+<div class=" container-fluid clearfix ">
+    <div class="row">
+          
+        <div class="wall_block box ">
+            <div class="wall_image_block"> 
+                <a href="/" >
+                    <div class="hover">
+                        <div>
+                            <button type="button" class="btn btn-sm">
+                                <span class="glyphicon glyphicon glyphicon-heart"></span>
+                            </button>
+                            <button type="button" class="btn btn-sm">
+                                <span class="glyphicon glyphicon glyphicon-comment"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <img src="./uploads/1.jpg" alt="altimage">
+                </a>
+                <div class="img_info">
+                    <a href="/" ><p class="name">picture_name</p></a>
+                    <p class="date border">04 octobre 2014 14:00</p>
+                    <!-- If like or comment -->
+                    <p class="like_comment border">
+                        
+                        <a href="/">
+                            <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
+                            <span class="comment">10</span>
+                        </a>
+                        <a href="/" >
+                            <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
+                            <span class="like">6</span>
+                        </a>
+                    </p>
+                    <!-- If user legend -->
+                    <p class="legend">text text text text text text text text text text text text text text</p>
+                </div>     
+            </div>    
+        </div>
+        
+       
+    </div>
+</div>
+
+
+
+<!--
 <div class="col-sm-offset-4 col-sm-4">
 
         @if(Session::has('ok'))
@@ -109,4 +161,7 @@
         {{ link_to_route('user.create', 'Ajouter un utilisateur', null, array('class' => 'btn btn-info pull-right')) }}
         {{ $users->links(); }}
 </div>
+
+-->
+
 @stop
