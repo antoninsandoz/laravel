@@ -14,21 +14,24 @@ class CreatePicturesTable extends Migration {
 	{
 		Schema::create('pictures', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('box_id')->unsigned(); //->unsigned() only positive values
-			$table->string('Picture_url', 100);
+			$table->integer('boxe_id')->unsigned(); //->unsigned() only positive values
+                        $table->string('Picture_url', 100);
 			$table->string('name', 30);
 			$table->integer('date')->unsigned(); //format date timestamp UNIX => format : 428389200 
 			$table->boolean('wall')->default(false);
 			$table->integer('like')->unsigned(); //->unsigned() only positive values
 			$table->integer('comment')->unsigned(); //->unsigned() only positive values 
-		});
+                        $table->string('legend', 1000);
+                        
+                });
 		
 		//create relation
 		Schema::table('pictures', function(Blueprint $table) {
-			$table->foreign('box_id')->references('id')->on('boxes')
+			$table->foreign('boxe_id')->references('id')->on('boxes')
 				->onDelete('restrict')
 				->onUpdate('restrict');
 		});
+                
 	}
 
 	/**

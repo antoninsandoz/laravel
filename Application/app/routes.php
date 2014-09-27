@@ -17,6 +17,11 @@ Route::get('/', 'HomeController@show');
 //user controller
 Route::resource('user', 'UserController');
 
+/*********WALL*********/
+//Route::resource('wall', 'WallController');
+Route::get('/wall/{id}', 'WallController@show');
+Route::get('/adminwall/{id}', 'WallController@adminshow');
+
 // the url adress don't exist
 App::missing(function()
 {

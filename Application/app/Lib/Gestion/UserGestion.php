@@ -1,6 +1,8 @@
 <?php namespace Lib\Gestion;
 
 use User;
+use Boxe;
+use Picture;
 use Input;
 use Hash;
 
@@ -13,13 +15,13 @@ class UserGestion implements UserGestionInterface {
 		$user->admin = Input::get('admin') ? 1 : 0;
 		$user->save();
 	}
-
+        /*
 	public function index($n)
 	{
 		$users = User::paginate($n);
 		return compact('users');
 	}
-        
+        */
         //sore data on DataBase
 	public function store()
 	{
@@ -30,9 +32,38 @@ class UserGestion implements UserGestionInterface {
 	}
 
 	public function show($id)
-	{
-		$user = User::find($id);
-		return compact('user');
+	{       
+                $user = Boxe::find($id)->user;
+		$boxes = User::find($id)->boxes;
+                
+                //All pictures from all boxs
+                foreach ($boxes as $key => $box) {
+                    
+                    $box_id = $box->id;
+                    //find picture foreach boxes
+                    $pictures[$box_id] = Boxe::find($box_id)->pictures;
+                    //creat new object with all pictures of all boxs
+                    $user_likes = 0;
+                    $user_comments = 0;
+                    $n=0;
+                    foreach ($pictures as $picture) {  
+                        foreach ($picture as $pict) {
+                            $n++;
+                            $allpictures[$n] = $pict;
+                            //Count all user likes
+                            if($pict->like >0)
+                                $user_likes = $pict->like + $user_likes;
+                            //Count all user comments
+                            if($pict->like >0)
+                                $user_comments = $pict->comment + $user_comments;
+                            //Count all pictures
+                            $user_pictures = $n;
+                        }
+                    }
+                }
+
+                return compact('user', 'boxes', 'allpictures','user_likes', 'user_comments', 'user_pictures');
+                
 	}
 
 	public function edit($id)

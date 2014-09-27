@@ -6,19 +6,24 @@ class PictureTableSeeder extends Seeder {
 	{
 		for($i = 1; $i < 20; ++$i)
 		{
-		
-			$time = time()-($i * 24 * 60 * 60);
+                                                               
+			$time = time()+($i * 2 * 13 * 59 * 59);
 			
+                        if($i<5)
+                            $box_id = 1;
+                        else
+                            $box_id = $i;
+                        
 			DB::table('pictures')->insert(array(
 					
-					'box_id' => $i,
+					'boxe_id' => $box_id,
 					'Picture_url' => $i.'.jpg',
 					'name' => 'Nom' . $i,
 					'date' => $time,
 					'wall' => true,
 					'like' => $i,
 					'comment' => $i,
-
+                                        'legend' => 'text text text text text text text text text text text text text text text text '.$i,
 				));
 		}
 	}

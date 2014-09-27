@@ -8,9 +8,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
 
-	public function posts() 
+	public function boxes() 
 	{
-		return $this->hasMany('Post');
+		return $this->hasMany('Boxe');
 	}
 	
 	use UserTrait, RemindableTrait;

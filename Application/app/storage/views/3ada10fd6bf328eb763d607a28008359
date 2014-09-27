@@ -27,7 +27,10 @@
 
         <?php echo HTML::style('css/all.css');; ?>
 
-    
+        
+        
+        
+        
     </head>
     
     <body>
