@@ -3,5 +3,6 @@
 interface WallGestionInterface {
 
 	public function show($id);
-
+        
+        public function adminshow($id);
 }

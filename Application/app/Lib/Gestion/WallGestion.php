@@ -10,7 +10,7 @@ class WallGestion implements WallGestionInterface {
 
 	public function show($id)
 	{       
-                $user = Boxe::find($id)->user;
+                $user = User::find($id);
 		$boxes = User::find($id)->boxes;
                 
                 //All pictures from all boxs
@@ -54,7 +54,7 @@ class WallGestion implements WallGestionInterface {
         
         public function adminshow($id)
 	{       
-                $user = Boxe::find($id)->user;
+                $user = Boxe::find($id);
 		$boxes = User::find($id)->boxes;
                 
                 //All pictures from all boxs

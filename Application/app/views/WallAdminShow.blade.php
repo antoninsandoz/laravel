@@ -45,13 +45,22 @@
           
         <div class="name col-xs-6 col-sm-3 col-md-3">
             <ul class="nav navbar-nav">
+              @if(count($boxes)>1)
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-camera"></span> Box name 1 <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-camera"></span> {{ $boxes[0]->name }} <span class="caret"></span></a>
+                
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Box name 2</a></li>
-                  <li><a href="#">Box name 3</a></li>
+                    @foreach($boxes as $box)
+                        @if(count($boxes)>1)
+                      <li><a href="#">{{$box->name}}</a></li>
+                        @endif
+                    @endforeach 
                 </ul>
+               
               </li>
+              @else       
+                <li class="dropdown"><a>{{$boxes[0]->name}}</a></li>
+              @endif
             </ul>
         </div>
         <div class="city number col-xs-6 col-sm-3 col-md-3">
@@ -111,11 +120,13 @@
 
                 </div>
                 <a href="/test" > 
-                    <img src="../uploads/{{$pict->Picture_url}}" alt="{{$pict->name}}"/> 
+                    {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
                 </a>
                 <div class="img_info">
                     <a href="/" ><p class="name">{{$pict->name}}</p></a>
-                    <p class="date border">{{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}</p>
+                    <p class="date border">
+                        {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}
+                    </p>
                     <!-- If like or comment -->
                     <p class="add_wall border">
                         <a href="/">

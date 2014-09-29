@@ -20,7 +20,7 @@ Route::resource('user', 'UserController');
 /*********WALL*********/
 //Route::resource('wall', 'WallController');
 Route::get('/wall/{id}', 'WallController@show');
-Route::get('/adminwall/{id}', 'WallController@adminshow');
+Route::get('/adminwall/{id}/{id_b}', 'WallController@adminshow');
 
 // the url adress don't exist
 App::missing(function()

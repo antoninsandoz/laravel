@@ -98,25 +98,31 @@
                             </a>
                         </div>
                     </div>
-                    <img src="../uploads/{{$pict->Picture_url}}" alt="{{$pict->name}}">
+                    {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
                 </a>
                 <div class="img_info">
                     <a href="/" ><p class="name">{{$pict->name}}</p></a>
-                    <p class="date border">{{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}</p>
-                    <!-- If like or comment -->
+                    <p class="date border">
+                        {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}
+                    </p>
+                    @if($pict->comment>0 OR $pict->like>0)
                     <p class="like_comment border">
-                        
+                        <!-- if comment -->
                         <a href="/">
                             <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
                             <span class="comment">{{$pict->comment}}</span>
                         </a>
+                        <!-- if like -->
                         <a href="/" >
                             <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
                             <span class="like">{{$pict->like}}</span>
                         </a>
                     </p>
+                    @endif
+                    @if($pict->legend)
                     <!-- If user legend -->
                     <p class="legend">{{$pict->legend}}</p>
+                    @endif
                 </div>     
             </div>    
         </div>

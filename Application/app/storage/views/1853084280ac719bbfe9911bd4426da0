@@ -96,12 +96,16 @@
                             </a>
                         </div>
                     </div>
-                    <img src="../uploads/<?php echo $pict->Picture_url; ?>" alt="<?php echo $pict->name; ?>">
+                    <?php echo HTML::image('uploads/'.$pict->Picture_url, $pict->name); ?>
+
                 </a>
                 <div class="img_info">
                     <a href="/" ><p class="name"><?php echo $pict->name; ?></p></a>
-                    <p class="date border"><?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?></p>
-                    <!-- If like or comment -->
+                    <p class="date border">
+                        <?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?>
+
+                    </p>
+                    <?php if($pict->comment>0 OR $pict->like>0): ?>
                     <p class="like_comment border">
                         
                         <a href="/">
@@ -113,8 +117,11 @@
                             <span class="like"><?php echo $pict->like; ?></span>
                         </a>
                     </p>
+                    <?php endif; ?>
+                    <?php if($pict->legend): ?>
                     <!-- If user legend -->
                     <p class="legend"><?php echo $pict->legend; ?></p>
+                    <?php endif; ?>
                 </div>     
             </div>    
         </div>
