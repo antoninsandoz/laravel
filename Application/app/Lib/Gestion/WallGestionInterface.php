@@ -4,5 +4,5 @@ interface WallGestionInterface {
 
 	public function show($id);
         
-        public function adminshow($id);
+        public function adminshow($id, $id_b);
 }

@@ -18,6 +18,7 @@ class CreateBoxesTable extends Migration {
 			$table->string('key', 30);
 			$table->string('name', 30);
 			$table->string('country', 50);
+                        $table->string('city', 50);
 			$table->integer('battery')->unsigned(); //->unsigned() only positive values
 			$table->integer('solar_panel')->unsigned(); //->unsigned() only positive values
 			$table->integer('first_date')->unsigned(); //format date timestamp UNIX => format : 428389200 

@@ -38,17 +38,17 @@
 <!-- Users Block Wall -->
 
 <h3 class="wall_title"> {{ $user->name }} : Management area of your boxes</h3>
-
 <div class="wall adminwall box container-fluid clearfix">
-
-    <div class="row">
-          
+    <div class="row"> 
         <div class="name col-xs-6 col-sm-3 col-md-3">
             <ul class="nav navbar-nav">
               @if(count($boxes)>1)
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-camera"></span> {{ $boxes[0]->name }} <span class="caret"></span></a>
-                
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-camera"></span> 
+                    {{ $boxes[0]->name }} 
+                    <span class="caret"></span>
+                </a>
                 <ul class="dropdown-menu" role="menu">
                     @foreach($boxes as $box)
                         @if(count($boxes)>1)
@@ -59,24 +59,26 @@
                
               </li>
               @else       
-                <li class="dropdown"><a>{{$boxes[0]->name}}</a></li>
+                <li class="dropdown">
+                    <a>{{$boxes[0]->name}}</a>
+                </li>
               @endif
             </ul>
         </div>
         <div class="city number col-xs-6 col-sm-3 col-md-3">
-            <li>box country</li>
-            <li>box city</li>
+            <li>{{$boxe->country}}</li>
+            <li>{{$boxe->city}}</li>
         </div>
         <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted">40%</span></div>
+          <div class="circle" ><span class="text-muted">{{$boxe->battery}}%</span></div>
           <p>Battery</p>
         </div>
         <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted">4</span></div>
+          <div class="circle" ><span class="text-muted">{{$pictureoftheday}}</span></div>
           <p>Pictures, today<p>
         </div>
         <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted">45</span></div>
+          <div class="circle" ><span class="text-muted">{{$pictureoftheweek}}</span></div>
           <p>Pictures, week</p>
         </div>
         
@@ -86,16 +88,9 @@
 
 </div>
 
-<!-- If no images -->
-<!--
-<div class=" box container-fluid clearfix ">
-    <p class="message_box bg-primary">Sorry they are no images to display</p>
-</div>
--->
-
 <div class=" container-fluid clearfix ">
     <div class="row">
-        @foreach($allpictures as $pict)
+        @foreach($pictures as $pict)
         <div class="wall_block box ">
             <div class="wall_image_block"> 
                 <div class="hover">
@@ -129,35 +124,39 @@
                     </p>
                     <!-- If like or comment -->
                     <p class="add_wall border">
-                        <a href="/">
-                            <span class="glyphicon glyphicon-plus-sign"></span><!-- Icone -->
-                            <!-- If NOT on the wall -->
-                            <span class="comment">Add to my wall</span>
-                            <!-- If on the wall -->
-                            <span class="comment">Remove from my wall</span>
-                        </a>
+                        
+                        <span class="glyphicon glyphicon-plus-sign"></span><!-- Icone -->
+                        <!-- If NOT on the wall -->
+                        @if($pict->wall == 0)
+                            <a href="/">
+                                <span class="walladd">Add to my wall</span>
+                            </a>
+                        @else
+                            <a href="/">
+                                <span class="walladd">Remove from my wall</span>
+                            </a>
+                        @endif
+                        
                     </p>
                     <p class="add_comment border">
-                        <a href="/">
-                            <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
+                        <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
                         <!-- If NO description / legend -->
-                            <span class="comment">Add a description</span>
-                        <!-- If description / legend -->
-                            <span class="comment">Modify a description</span>
-                        </a>
-                    </p>
-                    <p class="delete border">
+                        @if($pict->legend=0)
                         <a href="/">
-                            <span class="glyphicon glyphicon-ban-circle"></span><!-- Icone -->
+                            <span class="comment">Add description</span>
+                        </a>
+                        @else
+                        <a href="/">
+                            <span class="comment">Modify description</span>
+                        </a>
+                        @endif
+                    </p>
+                    <p class="delete ">
+                        <span class="glyphicon glyphicon-ban-circle"></span><!-- Icone -->
+                        <a href="/">
                             <span class="comment">Delete</span>
                         </a>
                     </p>
-                    <!-- If description / legend -->
-                    <p class="legend">
-
-                        <p class="legend">text text text text text text text text text text text text</p>
-                    </p>
-                    
                 </div>     
             </div>    
         </div>
@@ -165,5 +164,4 @@
        
     </div>
 </div>
-
 @stop <!-- /content-->

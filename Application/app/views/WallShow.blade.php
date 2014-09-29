@@ -32,28 +32,21 @@
 
 @stop
 
-
 @section('content')     <!-- content-->
 
 <!-- Users Block Wall -->
-
 <h3 class="wall_title">Discover all BirdsWink of {{ $user->name }} !</h3>
-
 <div class="wall box container-fluid clearfix">
-
-    <div class="row">
-          
+    <div class="row">      
         <div class="col-xs-6 col-sm-2 col-md-2">
             <div class="user_image"></div>
         </div>
-        
         <div class="name col-xs-6 col-sm-4 col-md-4">
             <h4>{{ $user->name }}</h4>
             <span>{{ $user->country }}</span>
             <span> | </span>
             <span>{{ $user->city }}</span>
-        </div>
-        
+        </div>  
         <div class="number col-xs-4 col-sm-2 col-md-2">
           <div class="circle" ><span class="text-muted">{{$user_likes}}</span></div>
           <p>Likes</p>
@@ -65,22 +58,14 @@
         <div class="number col-xs-4 col-sm-2 col-md-2">
           <div class="circle" ><span class="text-muted">{{$user_pictures}}</span></div>
           <p>Pictures<p>
-        </div>
-          
+        </div>     
     </div>
-
 </div>
-
-<!-- If no images -->
-<!--
-<div class=" box container-fluid clearfix ">
-    <p class="message_box bg-primary">Sorry they are no images to display</p>
-</div>
--->
 
 <div class=" container-fluid clearfix ">
     <div class="row">
         @foreach($allpictures as $pict)
+        @if($pict->wall == 1)
         <div class="wall_block box ">
             <div class="wall_image_block"> 
                 <a href="/" >
@@ -107,16 +92,18 @@
                     </p>
                     @if($pict->comment>0 OR $pict->like>0)
                     <p class="like_comment border">
-                        <!-- if comment -->
+                        @if($pict->comment>0)
                         <a href="/">
                             <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
                             <span class="comment">{{$pict->comment}}</span>
                         </a>
-                        <!-- if like -->
+                        @endif
+                        @if($pict->like>0)
                         <a href="/" >
                             <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
                             <span class="like">{{$pict->like}}</span>
                         </a>
+                        @endif
                     </p>
                     @endif
                     @if($pict->legend)
@@ -126,9 +113,8 @@
                 </div>     
             </div>    
         </div>
+        @endif
         @endforeach 
-       
     </div>
 </div>
-
 @stop <!-- /content-->
