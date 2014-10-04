@@ -37,7 +37,7 @@
 
 <!-- Users Block Wall -->
 
-<h3 class="wall_title"> {{ $user->name }} : Management area of your boxes</h3>
+<h3 class="wall_title"> {{ $user->username }} : Management area of your boxes</h3>
 <div class="wall adminwall box container-fluid clearfix">
     <div class="row"> 
         <div class="name col-xs-6 col-sm-3 col-md-3">
@@ -108,8 +108,12 @@
                         </a>
                         <a href="/" >
                             <button type="button" class="btn btn-sm">
+                            @if($pict->wall == 0)    
                             <span class="glyphicon glyphicon-plus-sign"></span>
+                            @else
+                            <span class="glyphicon glyphicon-minus-sign"></span>
                             </button>
+                            @endif
                         </a>
                     </div>
 
@@ -125,13 +129,15 @@
                     <!-- If like or comment -->
                     <p class="add_wall border">
                         
-                        <span class="glyphicon glyphicon-plus-sign"></span><!-- Icone -->
+                        
                         <!-- If NOT on the wall -->
                         @if($pict->wall == 0)
+                            <span class="glyphicon glyphicon-plus-sign"></span><!-- Icone -->
                             <a href="/">
                                 <span class="walladd">Add to my wall</span>
                             </a>
-                        @else
+                        @else 
+                            <span class="glyphicon glyphicon-minus-sign"></span><!-- Icone -->
                             <a href="/">
                                 <span class="walladd">Remove from my wall</span>
                             </a>

@@ -35,93 +35,116 @@
 
 <!-- Users Block Wall -->
 
-<h3 class="wall_title">Discover all BirdsWink of <?php echo $user->name; ?> !</h3>
+<h3 class="wall_title"><?php echo $user->username; ?></h3>
 
-<div class="wall box container-fluid clearfix">
+<div class="user container-fluid clearfix">
+    <div class="row">      
+       <div class="col-xs-12 col-sm-6 col-md-6">
+           <div class="box box-form ">
+                <h3 class="border-bottom">Account</h3>
+                <form class="form-horizontal" role="form">
+                  <div class="form-group border-bottom">
+                    <label for="image" class="col-sm-3 control-label">image</label>
+                    <div class="col-sm-9 user_image">
+                      <img src='../img/user_default.png' />
+                    </div>
+                    <button type="button" class="btn_image btn btn-default">Change image</button>
+                  </div>  
+                  <div class="form-group">
+                    <label for="inputEmail" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9">
+                        <a class="chage_password" href ="./">
+                            <button type="button" class="btn btn-default">Change password</button>
+                        </a>
+                    </div>
+                  </div>
 
-    <div class="row">
-          
-        <div class="col-xs-6 col-sm-2 col-md-2">
-            <div class="user_image"></div>
+                </form>
+          </div> 
         </div>
-        
-        <div class="name col-xs-6 col-sm-4 col-md-4">
-            <h4><?php echo $user->name; ?></h4>
-            <span><?php echo $user->country; ?></span>
-            <span> | </span>
-            <span><?php echo $user->city; ?></span>
-        </div>
-        
-        <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted"><?php echo $user_likes; ?></span></div>
-          <p>Likes</p>
-        </div>
-        <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted"><?php echo $user_comments; ?></span></div>
-          <p>Comments</p>
-        </div>
-        <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted"><?php echo $user_pictures; ?></span></div>
-          <p>Pictures<p>
-        </div>
-          
-    </div>
-
-</div>
-
-
-
-<!-- If no images -->
-<!--
-<div class=" box container-fluid clearfix ">
-    <p class="message_box bg-primary">Sorry they are no images to display</p>
-</div>
--->
-
-<div class=" container-fluid clearfix ">
-    <div class="row">
-        <?php foreach($allpictures as $pict): ?>
-        <div class="wall_block box ">
-            <div class="wall_image_block"> 
-                <a href="/" >
-                    <div class="hover">
-                        <div>
-                            <button type="button" class="btn btn-sm">
-                                <span class="glyphicon glyphicon glyphicon-heart"></span>
-                            </button>
-                            <button type="button" class="btn btn-sm">
-                                <span class="glyphicon glyphicon glyphicon-comment"></span>
-                            </button>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="box box-form-right ">
+                <h3 class="border-bottom">Informations</h3>
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="inputUsername" class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputLanguages" class="col-sm-3 control-label">Languages</label>
+                    <div class="col-sm-9">
+                      <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputUsername" class="col-sm-3 control-label">Country</label>
+                    <div class="col-sm-9">
+                        <select class="form-control">
+                          <option>1</option>
+                          <option>2</option>
+                          <option>3</option>
+                          <option>4</option>
+                          <option>5</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputUsername" class="col-sm-3 control-label">City</label>
+                    <div class="col-sm-9">
+                      <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputUsername" class="col-sm-3 control-label">Sex</label>
+                    <div class="col-sm-9">
+                        <div class="checkbox">
+                            <label>
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="women" >
+                              Women
+                            </label>
+                            <label>
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="men" >
+                              Men
+                            </label>
+                            <label>
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="unspecified" checked>
+                              Unspecified
+                            </label>
                         </div>
                     </div>
-                    <img src="../uploads/<?php echo $pict->Picture_url; ?>" alt="<?php echo $pict->name; ?>">
-                </a>
-                <div class="img_info">
-                    <a href="/" ><p class="name"><?php echo $pict->name; ?></p></a>
-                    <p class="date border"><?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?></p>
-                    <!-- If like or comment -->
-                    <p class="like_comment border">
-                        
-                        <a href="/">
-                            <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
-                            <span class="comment"><?php echo $pict->comment; ?></span>
-                        </a>
-                        <a href="/" >
-                            <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
-                            <span class="like"><?php echo $pict->like; ?></span>
-                        </a>
-                    </p>
-                    <!-- If user legend -->
-                    <p class="legend"><?php echo $pict->legend; ?></p>
-                </div>     
-            </div>    
+                  </div>
+                  
+                </form>
+            </div>   
         </div>
-        <?php endforeach; ?> 
-       
-    </div>
+        <div class="box col-xs-12 col-sm-12 col-md-12">
+            <div class="user_button">
+                <button  class="btn btn-default">Canceled</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+     </div>
 </div>
-
-
 
 
 <?php $__env->stopSection(); ?>

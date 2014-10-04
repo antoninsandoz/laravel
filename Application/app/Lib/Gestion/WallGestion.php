@@ -50,10 +50,10 @@ class WallGestion implements WallGestionInterface {
                 
 	}
         
-        public function adminshow($id, $id_b)
+        public function adminshow($id_b)
 	{       
-                $user = Boxe::find($id);
-		$boxes = User::find($id)->boxes;
+                $user = Boxe::find($id_b)->user;
+		$boxes = User::find($user->id)->boxes;
                 $boxe = User::find($id_b)->boxes;
                 $boxe = $boxe[0];
 

@@ -35,11 +35,13 @@
 @section('content')     <!-- content-->
 
 <!-- Users Block Wall -->
-<h3 class="wall_title">Discover all BirdsWink of {{ $user->name }} !</h3>
+<h3 class="wall_title">Discover all BirdsWink of {{ $user->username }} !</h3>
 <div class="wall box container-fluid clearfix">
     <div class="row">      
         <div class="col-xs-6 col-sm-2 col-md-2">
-            <div class="user_image"></div>
+            <div class="user_image">
+                <img src="../img/user_default.png" />
+            </div>
         </div>
         <div class="name col-xs-6 col-sm-4 col-md-4">
             <h4>{{ $user->name }}</h4>

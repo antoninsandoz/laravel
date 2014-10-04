@@ -13,15 +13,16 @@ class UserTableSeeder extends Seeder {
 			DB::table('users')->insert(array(
 					
 					'email' => 'email' . $i . '@test.test',
-					'name' => 'Nom' . $i,
+                                        'username' => 'UserName' . $i,
+					'firstname' => 'FirstNom' . $i,
+                                        'lastname' => 'LastName' . $i,
+                                        'image' =>  $i.'.jpg',
 					'password' => Hash::make('password' . $i),
-					'adress' => 'adress' . $i,
 					'city' => 'city' . $i,
 					'country' => 'country' . $i,
-					'account_type' => 'free',
-					'subscription_date' => $time,
-					'creation_date' => $time2,
+                                        'sex' => 'men',
 					'Languages_iso' => 'fr'
+                                        
 				));
 		}
 	}

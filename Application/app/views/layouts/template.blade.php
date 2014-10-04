@@ -57,19 +57,29 @@
         </div>
 
         <!-- Footer -->
-        <div class="footer clearfix">
+        <div class="footer" role="navigation">
             <div class="container">
-              
-              <ul class="nav navbar-nav">
-                   <li><a href="#">Link</a></li>
-                   <li><a href="#">Link</a></li>
-                   <li><a href="#">Link</a></li>
-                   <li><a href="#">Link</a></li>
-                   <li><a href="#">Link</a></li>
-              </ul>
-              <a class="logo_footer navbar-brand" href="#">Brand</a>
+                <div class="link">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span>Link</span>
+                    </a>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span>Link</span>
+                    </a>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span>Link</span>
+                    </a>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span>Link</span>
+                    </a>
+                </div>    
+                <a class="logo_footer navbar-brand" href="#">Brand</a>
             </div>
-        </div>   
+        </div>  
    
     </body>
     

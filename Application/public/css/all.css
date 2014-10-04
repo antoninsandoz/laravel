@@ -1,11 +1,16 @@
-/*Body*/
+/*BODY*/
 body{
     background-color: #E9EAED;
     font-family: 'Helvetica';
 
 }
 /**************************/
-/*Global*/
+/*GlLOBAL*/
+
+.main{
+    margin-bottom: 60px;
+}
+
 .box{
     margin-top: 15px;
     border-radius: 6px;
@@ -21,8 +26,23 @@ li {
     list-style-type:none;  
 }
 
+.border-bottom{
+    border-bottom: 1px solid #CCC;
+    padding-bottom: 10px;
+}
+
+.box-form{
+        margin-right: 10px;
+        padding: 20px;
+        /*For mobile = 0px !*/
+    }
+
+.box-form-right{
+    padding: 20px;
+}
+
 /**************************/
-/* Header */  
+/* HEADER */  
 .navbar{
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
     background-color: #FFF;
@@ -37,7 +57,7 @@ li {
 }
 
 /**************************/
-/*Main*/
+/*MAIN*/
 
 .main{
     margin-top: 50px; //for compensation of navigation bar top
@@ -52,7 +72,8 @@ li {
     margin: 25px;
 }
 
-/*Wall*/
+/**************************/
+/*WALL*/
 .wall{
     min-height: 60px; 
 }
@@ -60,12 +81,16 @@ li {
 font-weight: bold;
 }
 .user_image{
-    width: 50px;
-    height: 50px;
     margin-top: 10px;
-    background-image: url(../img/user_default.png);
+    float: left;
+    width: 100px;
+}
+
+.user_image img{
+    width: 50px;
     border-radius: 50px;
-    background-size: 50px;
+    height: 50px;
+    
 }
 
 .circle{
@@ -131,7 +156,7 @@ font-weight: bold;
 }
 
 /**************************/
-/*Wall image Block*/
+/*WALL image Block*/
 .wall_block {
     /*SIZE Media query*/
     margin-right: 15px;
@@ -239,6 +264,31 @@ font-weight: bold;
 }
 
 
+/**************************/
+/*USER*/
+
+/*Show*/
+
+.user h3{
+    margin-top: 0px;
+}
+
+.user div.row>div{
+    padding: 0px;
+}
+
+.btn_image{
+    margin-top: 15px;
+}
+
+.user_button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: right;
+    margin-right: 20px;
+}
+
+
 /*MEDIA QUERY SIZE*/
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
@@ -250,12 +300,22 @@ font-weight: bold;
  
 }
 
+/* Extra small devices (phones, less than 768px) */
+/*Mobile XS*/
+@media (max-width: 768px) {  
+    
+    .box-form{
+        margin-right: 0px;
+    }
+    
+}
 
-
-@media (max-width: 768px) {  }
-
+/* Small devices (tablets, 768px and up) */
+/*Tablette SM*/
 @media (min-width: 768px) and (max-width: 992px ) {  }
 
+/* Medium devices (desktops, 992px and up) */
+/*PC MD*/
 @media (min-width: 992px ) and (max-width: 1200px ) { 
 
 .wall_block, 
@@ -266,6 +326,8 @@ font-weight: bold;
 
 }
 
+/* Large devices (large desktops, 1200px and up) */
+/*PC LG*/
 @media (min-width: @screen-lg-min) {  }
 
 
@@ -273,14 +335,23 @@ font-weight: bold;
 /*Footer*/
 
 .footer{
-    margin-top: 15px;
     background-color: fff;
-    position: relative;
-    width: 100%;
-    bottom: 0px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),0 0 1px 1px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
+.footer div.link{
+   margin-top: 20px;
+   float: left;
+}
+
+.footer a{
+    margin-right: 20px;
+}
+    
 .logo_footer{
     float: right;
 }

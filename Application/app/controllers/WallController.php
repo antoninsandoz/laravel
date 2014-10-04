@@ -25,9 +25,9 @@ class WallController extends BaseController {
 	}
         
         //Admin wall display 
-	public function adminshow($id, $id_b)
+	public function adminshow($id_b)
 	{
-		return View::make('WallAdminShow',  $this->wall_gestion->adminshow($id, $id_b));
+		return View::make('WallAdminShow',  $this->wall_gestion->adminshow($id_b));
 	}
 
 }

@@ -22,6 +22,7 @@ class UserController extends BaseController {
 		$this->user_gestion = $user_gestion;
 	}
         //user list
+        //IF ADMIN
 	public function index()
 	{
 		return View::make('UserIndex', $this->user_gestion->index(4));
