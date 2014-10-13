@@ -53,7 +53,7 @@
                   <div class="form-group">
                     <label for="inputEmail" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-9">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input type="email" class="form-control" id="inputEmail" value="<?php echo $user->email; ?>">
                     </div>
                   </div>
                   <div class="form-group">
@@ -75,13 +75,14 @@
                   <div class="form-group">
                     <label for="inputUsername" class="col-sm-3 control-label">Username</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                      <input type="text" class="form-control" id="inputUsername" value="<?php echo $user->username; ?>">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputLanguages" class="col-sm-3 control-label">Languages</label>
                     <div class="col-sm-9">
                       <select class="form-control">
+                        <!--foreach + if -->
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -94,6 +95,7 @@
                     <label for="inputUsername" class="col-sm-3 control-label">Country</label>
                     <div class="col-sm-9">
                         <select class="form-control">
+                          <!--foreach + if -->
                           <option>1</option>
                           <option>2</option>
                           <option>3</option>
@@ -106,6 +108,7 @@
                     <label for="inputUsername" class="col-sm-3 control-label">City</label>
                     <div class="col-sm-9">
                       <select class="form-control">
+                        <!--foreach + if -->  
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -118,16 +121,17 @@
                     <label for="inputUsername" class="col-sm-3 control-label">Sex</label>
                     <div class="col-sm-9">
                         <div class="checkbox">
+                            
                             <label>
-                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="women" >
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="women" > <!-- if for checked-->
                               Women
                             </label>
                             <label>
-                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="men" >
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="men" > <!-- if for checked-->
                               Men
                             </label>
                             <label>
-                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="unspecified" checked>
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="unspecified"  checked> <!-- if for checked-->
                               Unspecified
                             </label>
                         </div>

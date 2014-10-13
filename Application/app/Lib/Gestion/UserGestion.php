@@ -34,7 +34,6 @@ class UserGestion implements UserGestionInterface {
 	public function show($id)
 	{       
                 $user = User::find($id);
-	
                 return compact('user');
                 
 	}

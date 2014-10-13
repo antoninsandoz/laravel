@@ -288,6 +288,14 @@ font-weight: bold;
     margin-right: 20px;
 }
 
+/*page not found*/
+h1.page_not_fund{
+   font-size: 63px;
+    font-weight: 500;
+    line-height: 1.1;
+    text-align: center;    
+}
+
 
 /*MEDIA QUERY SIZE*/
 /* Extra small devices (phones, less than 768px) */
@@ -328,7 +336,10 @@ font-weight: bold;
 
 /* Large devices (large desktops, 1200px and up) */
 /*PC LG*/
-@media (min-width: @screen-lg-min) {  }
+@media (min-width: 1200px) {  
+
+
+}
 
 
 
