@@ -7,12 +7,14 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
 
-
+        //To disable automatic timestamp updates 
+        public $timestamps = false;
+    
 	public function boxes() 
 	{
 		return $this->hasMany('Boxe');
 	}
-	
+
 	use UserTrait, RemindableTrait;
 
 	/**

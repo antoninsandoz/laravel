@@ -36,15 +36,26 @@
 @section('content')
 
 <!-- Users Block Wall -->
+<ol class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/user/{{$user->id}}">{{$user->username }}</a></li>
+</ol>
 
 <h3 class="wall_title">{{ $user->username }}</h3>
 
+<!-- if message -->
+@if(Session::has('ok'))
+          <div class="alert alert-success">{{ Session::get('ok') }}</div>
+@endif
+
 <div class="user container-fluid clearfix">
-    <div class="row">      
+    {{ Form::open(array('url' => 'user/' . $user->id, 'method' => 'put')) }}
+    <div class="row">   
+       
        <div class="col-xs-12 col-sm-6 col-md-6">
            <div class="box box-form ">
                 <h3 class="border-bottom">Account</h3>
-                <form class="form-horizontal" role="form">
+                <div class="form-horizontal" role="form">
                   <div class="form-group border-bottom">
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
@@ -52,67 +63,67 @@
                     </div>
                     <button type="button" class="btn_image btn btn-default">Change image</button>
                   </div>  
-                  <div class="form-group">
+                  <div class="form-group border-bottom">
                     <label for="inputEmail" class="col-sm-3 control-label">Email</label>
-                    <div class="col-sm-9">
-                      <input type="email" class="form-control" id="inputEmail" value="{{$user->email}}">
+                    <div class="col-sm-9 {{ $errors->has('email') ? 'has-error has-feedback' : '' }}">
+                        <small class="text-danger">{{ $errors->first('email') }}</small>
+                        {{ Form::email('email', $user->email, array('class' => 'form-control', 'value' => $user->email)) }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputPassword" class="col-sm-3 control-label">Password</label>
-                    <div class="col-sm-9">
-                        <a class="chage_password" href ="./">
-                            <button type="button" class="btn btn-default">Change password</button>
-                        </a>
+                    <label for="inputEmail" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9 {{ $errors->has('password') ? 'has-error has-feedback' : '' }}">
+                        <small class="text-danger">{{ $errors->first('password') }}</small>
+                         {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Your password')) }}
                     </div>
+                    <br>
+                    <br>
+                    <label for="inputEmail" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9 {{ $errors->has('password') ? 'has-error has-feedback' : '' }}">
+                        <small class="text-danger">{{ $errors->first('password') }}</small>
+                        {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Retype your password')) }}
+                    </div>
+                   
                   </div>
+                    
+                
 
-                </form>
+                </div>
           </div> 
         </div>
         <div class="col-xs-12 col-sm-6 col-md-6">
             <div class="box box-form-right ">
                 <h3 class="border-bottom">Informations</h3>
-                <form class="form-horizontal" role="form">
+                <div class="form-horizontal" role="form">
                   <div class="form-group">
-                    <label for="inputUsername" class="col-sm-3 control-label">Username</label>
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="inputUsername" value="{{$user->username}}">
+                    <label for="username" class="col-sm-3 control-label">Username</label>                    
+                    <div class="col-sm-9 {{ $errors->has('username') ? 'has-error has-feedback' : '' }}">
+                        <small class="text-danger">{{ $errors->first('username') }}</small>
+                        {{ Form::text('username', $user->username, array('class' => 'form-control', 'value' => $user->username)) }}
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputLanguages" class="col-sm-3 control-label">Languages</label>
-                    <div class="col-sm-9">
-                      <select class="form-control">
-                        <!--foreach + if -->
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
+                    <label for="Languages_iso" class="col-sm-3 control-label">Languages</label>
+                    <div class="col-sm-9 {{ $errors->has('Languages_iso') ? 'has-error has-feedback' : '' }}">
+                      {{ Form::select('Languages_iso', array('en' => 'English','de' => 'German', 'fr' => 'French'), $user->Languages_iso, array('class' => 'form-control')) }}
+                    </div>
+                  </div>
+                  <!--To modify for Add all coountry-->
+                  <!--foreach + if http://api.geonames.org/countryInfo?username=demo-->
+                  <div class="form-group">
+                    <label for="country" class="col-sm-3 control-label">Country</label>
+                    <div class="col-sm-9 {{ $errors->has('country') ? 'has-error has-feedback' : '' }}">
+                        {{ Form::select('country', array('Switzerland' => 'Switzerland'), 'Switzerland', array('class' => 'form-control')) }}
                     </div>
                   </div>
                   
-                  <div class="form-group">
-                    <label for="inputUsername" class="col-sm-3 control-label">Country</label>
-                    <div class="col-sm-9">
-                        <select class="form-control">
-                          <!--foreach + if http://api.geonames.org/countryInfo?username=demo-->
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
-                        </select>
-                    </div>
-                  </div>
                  <!--Add groupe for all children foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->  
-                  <div class="form-group">
+                 <!--foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->
+                 <!-- Not use for the moment  
+                 <div class="form-group">
                     <label for="inputUsername" class="col-sm-3 control-label">City</label>
                     <div class="col-sm-9">
-                      <select class="form-control">
-                        <!--foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->  
+                      <select class="form-control">   
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -121,37 +132,73 @@
                       </select>
                     </div>
                   </div>
+                 -->
                   <div class="form-group">
                     <label for="inputUsername" class="col-sm-3 control-label">Sex</label>
-                    <div class="col-sm-9">
+                     <div class="col-sm-9 {{ $errors->has('sex') ? 'has-error has-feedback' : '' }}">
                         <div class="checkbox">
-                            
                             <label>
-                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="women" > <!-- if for checked-->
+                              @if($user->sex == 'women')
+                              {{Form::radio('sex', 'women', true)}}
+                              @else
+                              {{Form::radio('sex', 'women')}}
+                              @endif
                               Women
                             </label>
                             <label>
-                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="men" > <!-- if for checked-->
+                              @if($user->sex == 'men')
+                              {{Form::radio('sex', 'men', true)}}
+                              @else
+                              {{Form::radio('sex', 'men')}}
+                              @endif
                               Men
                             </label>
                             <label>
-                              <input type="radio" name="optionsRadios" id="optionsRadios1" value="unspecified"  checked> <!-- if for checked-->
+                              @if($user->sex == 'unspecified')
+                              {{Form::radio('sex', 'unspecified', true)}}
+                              @else
+                              {{Form::radio('sex', 'unspecified')}}
+                              @endif
                               Unspecified
                             </label>
                         </div>
                     </div>
                   </div>
                   
-                </form>
+                </div>
             </div>   
         </div>
         <div class="box col-xs-12 col-sm-12 col-md-12">
             <div class="user_button">
-                <button  class="btn btn-default">Canceled</button>
+                <button class="btn btn-default">Canceled</button>
                 <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </div>
+       
      </div>
+    {{ Form::close() }}
+</div>
+
+
+
+<!--Popup windows password-->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 

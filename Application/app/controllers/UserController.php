@@ -23,11 +23,12 @@ class UserController extends BaseController {
 	}
         //user list
         //IF ADMIN
+        /*Not use
 	public function index()
 	{
 		return View::make('UserIndex', $this->user_gestion->index(4));
 	}
-        
+        */
         //one user form of creation
 	public function create()
 	{
@@ -56,22 +57,25 @@ class UserController extends BaseController {
 	}
         
         //one user edit
-    public function edit($id)
-	{
-		return View::make('UserEdit',  $this->user_gestion->edit($id));
-	}
-        
+        /*Not use
+        public function edit($id)
+            {
+                    return View::make('UserEdit',  $this->user_gestion->edit($id));
+            }
+        */
         //one user update
 	public function update($id)
 	{
 		if ($this->update_validation->fails($id)) {
-		  return Redirect::route('user.edit', array($id))
+		  return Redirect::route('user.show', array($id))
 		  ->withInput()
+                  ->with('ok','Erreurs')
 		  ->withErrors($this->update_validation->errors());
+                  
 		} else {
 			$this->user_gestion->update($id);
-			return Redirect::route('user.index')
-			->with('ok','L\'utilisateur a bien été modifié.');
+			return Redirect::route('user.show', array($id))
+			->with('ok','Utilisateur modifié.');
 		}		
 	}
 

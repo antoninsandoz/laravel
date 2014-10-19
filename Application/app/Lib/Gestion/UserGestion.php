@@ -10,24 +10,33 @@ class UserGestion implements UserGestionInterface {
 
     private function save($user)
 	{
-		$user->name = Input::get('name');
-		$user->email = Input::get('email');		
-		$user->admin = Input::get('admin') ? 1 : 0;
+
+                $user->username = Input::get('username');
+                $user->email = Input::get('email');
+                //$user->image = Input::get('image');
+                //$user->password = Input::get('password');
+                //$user->city = Input::get('city');
+                $user->country = Input::get('country');
+                $user->sex = Input::get('sex');
+                $user->Languages_iso = Input::get('Languages_iso');
+         
 		$user->save();
+                  
 	}
        
+        /*not use
 	public function index($n)
 	{
 		$users = User::paginate($n);
 		return compact('users');
 	}
-   
+        */
         //sore data on DataBase
 	public function store()
 	{
 		$user = new User;
                 //passeord is coded in classe Hash (cryptage Bcrypt)
-		$user->password = Hash::make(Input::get('password'));
+		//$user->password = Hash::make(Input::get('password'));
 		$this->save($user);
 	}
 
@@ -37,13 +46,13 @@ class UserGestion implements UserGestionInterface {
                 return compact('user');
                 
 	}
-
+        /*Not use
 	public function edit($id)
 	{
 		$user = User::find($id);
 		return compact('user');
 	}
-
+        */
 	public function update($id)
 	{
 		$user = User::find($id);
