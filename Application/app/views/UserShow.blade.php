@@ -1,4 +1,4 @@
-@extends('layouts/template')
+@extends('/layouts/template')
 
 @section('topbar')
 
@@ -71,23 +71,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="inputEmail" class="col-sm-3 control-label">Password</label>
-                    <div class="col-sm-9 {{ $errors->has('password') ? 'has-error has-feedback' : '' }}">
-                        <small class="text-danger">{{ $errors->first('password') }}</small>
-                         {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Your password')) }}
-                    </div>
-                    <br>
-                    <br>
-                    <label for="inputEmail" class="col-sm-3 control-label"></label>
-                    <div class="col-sm-9 {{ $errors->has('password') ? 'has-error has-feedback' : '' }}">
-                        <small class="text-danger">{{ $errors->first('password') }}</small>
-                        {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Retype your password')) }}
-                    </div>
-                   
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <a href="/password/{{$user->id}}" ><button type="button" class="btn_image btn btn-default">Change password</button></a>
                   </div>
-                    
-                
-
                 </div>
           </div> 
         </div>
@@ -134,7 +120,7 @@
                   </div>
                  -->
                   <div class="form-group">
-                    <label for="inputUsername" class="col-sm-3 control-label">Sex</label>
+                    <label for="sex" class="col-sm-3 control-label">Sex</label>
                      <div class="col-sm-9 {{ $errors->has('sex') ? 'has-error has-feedback' : '' }}">
                         <div class="checkbox">
                             <label>
@@ -178,28 +164,5 @@
      </div>
     {{ Form::close() }}
 </div>
-
-
-
-<!--Popup windows password-->
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 @stop

@@ -2,23 +2,27 @@
 
 use Lib\Validation\UserCreateValidator as UserCreateValidator;
 use Lib\Validation\UserUpdateValidator as UserUpdateValidator;
+use Lib\Validation\UserPassUpdateValidator as UserPassUpdateValidator;
 use Lib\Gestion\UserGestion as UserGestion;
 
 class UserController extends BaseController {
 
         protected $create_validation;
 	protected $update_validation;
+        protected $pass_update_validation;
 	protected $user_gestion;
 
 	public function __construct(
 		UserCreateValidator $create_validation, 
 		UserUpdateValidator $update_validation,
+                UserPassUpdateValidator $pass_update_validation,
 		UserGestion $user_gestion
 		)
 	{
 		parent::__construct();
 		$this->create_validation = $create_validation;
 		$this->update_validation = $update_validation;
+                $this->pass_update_validation = $pass_update_validation;
 		$this->user_gestion = $user_gestion;
 	}
         //user list
@@ -56,27 +60,50 @@ class UserController extends BaseController {
 		return View::make('UserShow',  $this->user_gestion->show($id));
 	}
         
-        //one user edit
-        /*Not use
-        public function edit($id)
-            {
-                    return View::make('UserEdit',  $this->user_gestion->edit($id));
-            }
-        */
+        //Password edit !
+        public function password($id)
+        {
+            return View::make('UserPassword',  $this->user_gestion->show($id));
+
+        }
+        
         //one user update
 	public function update($id)
-	{
-		if ($this->update_validation->fails($id)) {
-		  return Redirect::route('user.show', array($id))
-		  ->withInput()
-                  ->with('ok','Erreurs')
-		  ->withErrors($this->update_validation->errors());
-                  
-		} else {
-			$this->user_gestion->update($id);
-			return Redirect::route('user.show', array($id))
-			->with('ok','Utilisateur modifié.');
-		}		
+	{   
+            if(Input::get('password')){
+                if(Input::get('password2') != Input::get('password')){
+                    return Redirect::action('UserController@password', array($id))
+                    ->withInput()
+                    ->with('ok','Erreurs : Passwords are not the same');
+                }
+                else{
+
+                    if ($this->pass_update_validation->fails($id)) {
+                    return Redirect::action('UserController@password', array($id))
+                    ->withInput()
+                    ->with('ok','Erreurs')
+                    ->withErrors($this->pass_update_validation->errors());
+                    } 
+                    else {
+                            $this->user_gestion->update_password($id);
+                            return Redirect::route('user.show', array($id))
+                            ->with('ok','Password modified');
+                    }
+                }
+            }
+            else{
+                if ($this->update_validation->fails($id)) {
+                  return Redirect::route('user.show', array($id))
+                  ->withInput()
+                  ->with('ok','Erreurs the fields are not correct')
+                  ->withErrors($this->update_validation->errors());
+
+                } else {
+                        $this->user_gestion->update($id);
+                        return Redirect::route('user.show', array($id))
+                        ->with('ok','User modified.');
+                }
+            }
 	}
 
 	public function destroy($id)

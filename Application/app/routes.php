@@ -17,6 +17,9 @@ Route::get('/', 'HomeController@show');
 //user controller
 Route::resource('user', 'UserController');
 
+//password
+Route::get('/password/{id}', 'UserController@password');
+
 /*********WALL*********/
 //Route::resource('wall', 'WallController');
 Route::get('/wall/{id}', 'WallController@show');
