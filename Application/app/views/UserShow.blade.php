@@ -49,7 +49,7 @@
 @endif
 
 <div class="user container-fluid clearfix">
-    {{ Form::open(array('url' => 'user/' . $user->id, 'method' => 'put')) }}
+    {{ Form::open(array('url' => 'user/', 'method' => 'post')) }}
     <div class="row">   
        
        <div class="col-xs-12 col-sm-6 col-md-6">
@@ -59,9 +59,13 @@
                   <div class="form-group border-bottom">
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
-                      <img src='../img/user_default.png' />
+                        @if($user->image)
+                        <img src='./uploads/{{$user->image}}' />
+                        @else
+                        <img src='./img/user_default.png' />
+                        @endif
                     </div>
-                    <button type="button" class="btn_image btn btn-default">Change image</button>
+                    <a href="/userimage/{{$user->id}}"><button type="button" class="btn_image btn btn-default">Change image</button></a>
                   </div>  
                   <div class="form-group border-bottom">
                     <label for="inputEmail" class="col-sm-3 control-label">Email</label>

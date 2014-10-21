@@ -14,8 +14,8 @@ class UserTableSeeder extends Seeder {
 					
 					'email' => 'email' . $i . '@test.test',
                                         'username' => 'UserName' . $i,
-                                        'image' =>  $i.'.jpg',
-					'password' => Hash::make('password' . $i),
+                                        'image' =>  '', //empty !!
+					'password' => Hash::make('1234'),
 					'city' => 'city' . $i,
 					'country' => 'country' . $i,
                                         'sex' => 'men',

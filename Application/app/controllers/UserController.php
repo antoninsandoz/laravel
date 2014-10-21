@@ -20,6 +20,7 @@ class UserController extends BaseController {
 		)
 	{
 		parent::__construct();
+                $this->beforeFilter('auth'); //filtre authentification
 		$this->create_validation = $create_validation;
 		$this->update_validation = $update_validation;
                 $this->pass_update_validation = $pass_update_validation;
@@ -55,9 +56,16 @@ class UserController extends BaseController {
 	}
         
         //one user display     
-	public function show($id)
-	{
-		return View::make('UserShow',  $this->user_gestion->show($id));
+	public function show()
+	{       
+            if (Auth::check())
+            {
+                $id = Auth::id();
+                return View::make('UserShow',  $this->user_gestion->show($id));
+            }
+            else
+                return View::make('login');
+            
 	}
         
         //Password edit !
@@ -68,42 +76,48 @@ class UserController extends BaseController {
         }
         
         //one user update
-	public function update($id)
+	public function update()
 	{   
-            if(Input::get('password')){
-                if(Input::get('password2') != Input::get('password')){
-                    return Redirect::action('UserController@password', array($id))
-                    ->withInput()
-                    ->with('ok','Erreurs : Passwords are not the same');
+            if (Auth::check())
+            {    
+                $id = Auth::id();
+                if(Input::get('password')){
+                    if(Input::get('password2') != Input::get('password')){
+                        return Redirect::action('UserController@password', array($id))
+                        ->withInput()
+                        ->with('ok','Erreurs : Passwords are not the same');
+                    }
+                    else{
+
+                        if ($this->pass_update_validation->fails($id)) {
+                        return Redirect::action('UserController@password', array($id))
+                        ->withInput()
+                        ->with('ok','Erreurs')
+                        ->withErrors($this->pass_update_validation->errors());
+                        } 
+                        else {
+                                $this->user_gestion->update_password($id);
+                                return Redirect::to('user')
+                                ->with('ok','Password modified');
+                        }
+                    }
                 }
                 else{
+                    if ($this->update_validation->fails($id)) {
+                      return Redirect::to('user')
+                      ->withInput()
+                      ->with('ok','Erreurs the fields are not correct')
+                      ->withErrors($this->update_validation->errors());
 
-                    if ($this->pass_update_validation->fails($id)) {
-                    return Redirect::action('UserController@password', array($id))
-                    ->withInput()
-                    ->with('ok','Erreurs')
-                    ->withErrors($this->pass_update_validation->errors());
-                    } 
-                    else {
-                            $this->user_gestion->update_password($id);
-                            return Redirect::route('user.show', array($id))
-                            ->with('ok','Password modified');
+                    } else {
+                            $this->user_gestion->update($id);
+                            return Redirect::to('user')
+                            ->with('ok','User modified.');
                     }
                 }
             }
-            else{
-                if ($this->update_validation->fails($id)) {
-                  return Redirect::route('user.show', array($id))
-                  ->withInput()
-                  ->with('ok','Erreurs the fields are not correct')
-                  ->withErrors($this->update_validation->errors());
-
-                } else {
-                        $this->user_gestion->update($id);
-                        return Redirect::route('user.show', array($id))
-                        ->with('ok','User modified.');
-                }
-            }
+            else
+                return View::make('login');
 	}
 
 	public function destroy($id)

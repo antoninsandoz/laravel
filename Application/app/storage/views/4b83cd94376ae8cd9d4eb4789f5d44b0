@@ -47,7 +47,7 @@
 <?php endif; ?>
 
 <div class="user container-fluid clearfix">
-    <?php echo Form::open(array('url' => 'user/' . $user->id, 'method' => 'put')); ?>
+    <?php echo Form::open(array('url' => 'user/', 'method' => 'post')); ?>
 
     <div class="row">   
        
@@ -58,9 +58,13 @@
                   <div class="form-group border-bottom">
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
-                      <img src='../img/user_default.png' />
+                        <?php if($user->image): ?>
+                        <img src='./uploads/<?php echo $user->image; ?>' />
+                        <?php else: ?>
+                        <img src='./img/user_default.png' />
+                        <?php endif; ?>
                     </div>
-                    <button type="button" class="btn_image btn btn-default">Change image</button>
+                    <a href="/userimage/<?php echo $user->id; ?>"><button type="button" class="btn_image btn btn-default">Change image</button></a>
                   </div>  
                   <div class="form-group border-bottom">
                     <label for="inputEmail" class="col-sm-3 control-label">Email</label>

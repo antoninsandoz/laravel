@@ -15,10 +15,22 @@
 Route::get('/', 'HomeController@show');
 
 //user controller
-Route::resource('user', 'UserController');
+//Route::resource('user', 'UserController');
+Route::get('user', 'UserController@show');
+Route::post('user', 'UserController@update');
 
 //password
-Route::get('/password/{id}', 'UserController@password');
+Route::get('/password', 'UserController@password');
+
+//userImage
+//Route::controller('Userimage', 'UserimageController');
+Route::get('userimage', 'UserimageController@getForm');
+Route::post('userimage', 'UserimageController@postForm');
+
+//login
+Route::get('login', 'LoginController@getLogin');
+Route::post('login', 'LoginController@postLogin');
+Route::get('logout/{id}', 'LoginController@getLogout');
 
 /*********WALL*********/
 //Route::resource('wall', 'WallController');
