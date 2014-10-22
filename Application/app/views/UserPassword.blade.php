@@ -49,7 +49,7 @@
 @endif
 
 <div class="user container-fluid clearfix">
-    {{ Form::open(array('url' => 'user/' . $user->id, 'method' => 'put')) }}
+    {{ Form::open(array('url' => 'password', 'method' => 'post')) }}
     <div class="row">   
        
        <div class="col-xs-12 col-sm-12 col-md-12">

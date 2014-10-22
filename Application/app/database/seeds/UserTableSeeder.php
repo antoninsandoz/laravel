@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder {
 			
 			DB::table('users')->insert(array(
 					
-					'email' => 'email' . $i . '@test.test',
+					'email' => 'email' . $i . '@test.com',
                                         'username' => 'UserName' . $i,
                                         'image' =>  '', //empty !!
 					'password' => Hash::make('1234'),

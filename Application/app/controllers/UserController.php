@@ -20,38 +20,31 @@ class UserController extends BaseController {
 		)
 	{
 		parent::__construct();
-                $this->beforeFilter('auth'); //filtre authentification
+                //$this->beforeFilter('auth'); //filtre authentification
 		$this->create_validation = $create_validation;
 		$this->update_validation = $update_validation;
                 $this->pass_update_validation = $pass_update_validation;
 		$this->user_gestion = $user_gestion;
 	}
-        //user list
-        //IF ADMIN
-        /*Not use
-	public function index()
-	{
-		return View::make('UserIndex', $this->user_gestion->index(4));
-	}
-        */
-        //one user form of creation
-	public function create()
-	{
-		return View::make('UserCreate');
-	}
         
         //one user store on DataBase
 	public function store()
-	{
+	{   
             //check validation before store on DataBase
             if ($this->create_validation->fails()) {
-		  return Redirect::route('user.create')
+		  return Redirect::to('login')
+                  ->with('error','Errors in fields, please correct it')        
 		  ->withInput()
 		  ->withErrors($this->create_validation->errors());
 		} else {
 			$this->user_gestion->store();
-			return Redirect::route('user.index')
-			->with('ok','L\'utilisateur a bien été créé.');
+//			return Redirect::to('login')
+//			->with('ok','Thank you for registering');
+                        $email = Input::get('email_new');
+                        $password = Input::get('password_new');
+                        Auth::attempt(array('email' => $email, 'password' => $password));
+                        return Redirect::to('user')
+                        ->with('ok','Thank you for registering');
 		}		
 	}
         
@@ -69,9 +62,16 @@ class UserController extends BaseController {
 	}
         
         //Password edit !
-        public function password($id)
+        public function password()
         {
-            return View::make('UserPassword',  $this->user_gestion->show($id));
+            if (Auth::check())
+            {
+                $id = Auth::id();
+                return View::make('UserPassword',  $this->user_gestion->show($id));
+            }
+            else
+                return View::make('login');
+            
 
         }
         
@@ -83,14 +83,14 @@ class UserController extends BaseController {
                 $id = Auth::id();
                 if(Input::get('password')){
                     if(Input::get('password2') != Input::get('password')){
-                        return Redirect::action('UserController@password', array($id))
+                        return Redirect::action('UserController@password')
                         ->withInput()
-                        ->with('ok','Erreurs : Passwords are not the same');
+                        ->with('error','Erreurs : Passwords are not the same');
                     }
                     else{
 
                         if ($this->pass_update_validation->fails($id)) {
-                        return Redirect::action('UserController@password', array($id))
+                        return Redirect::action('UserController@password')
                         ->withInput()
                         ->with('ok','Erreurs')
                         ->withErrors($this->pass_update_validation->errors());

@@ -12,7 +12,7 @@ class UserGestion implements UserGestionInterface {
     {
 
             $user->username = Input::get('username');
-            $user->email = Input::get('email');
+            $user->email = Input::get('email_new');
             //$user->image = Input::get('image');
             //$user->city = Input::get('city');
             $user->country = Input::get('country');
@@ -28,8 +28,10 @@ class UserGestion implements UserGestionInterface {
     {
             $user = new User;
             //passeord is coded in classe Hash (cryptage Bcrypt)
-            //$user->password = Hash::make(Input::get('password'));
+            $user->password = Hash::make(Input::get('password_new'));
             $this->save($user);
+            
+            
     }
 
     public function show($id)

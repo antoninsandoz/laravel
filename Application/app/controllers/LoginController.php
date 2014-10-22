@@ -2,7 +2,7 @@
 
 use Lib\Validation\LoginValidator as LoginValidator;
 
-class LoginController extends BaseController {
+class LoginController extends BaseController{
 
     protected $login_validation;
 
@@ -13,8 +13,14 @@ class LoginController extends BaseController {
     }
 
     public function getLogin()
-    {
-            return View::make('login');
+    {       
+            if (Auth::check())
+            {
+                return Redirect::to('user')->with('ok', 'You are alredy logged!');
+            }
+            else
+                return View::make('login');
+            
     }
 
     public function postLogin()
@@ -26,7 +32,7 @@ class LoginController extends BaseController {
             } 
             else {
                 if (Auth::attempt(array('email'=>Input::get('email'), 'password'=>Input::get('password')),true)) {
-                    return Redirect::to('user')->with('message', 'You are now logged in!');
+                    return Redirect::to('user')->with('ok', 'You are now logged in!');
                 }
                 else{
                     return Redirect::to('login')
@@ -39,7 +45,7 @@ class LoginController extends BaseController {
     public function getLogout()
     {
             Auth::logout();
-            return Redirect::route('login');
+            return Redirect::to('login');
     }
 
 }

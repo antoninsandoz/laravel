@@ -47,7 +47,7 @@
 <?php endif; ?>
 
 <div class="user container-fluid clearfix">
-    <?php echo Form::open(array('url' => 'user/' . $user->id, 'method' => 'put')); ?>
+    <?php echo Form::open(array('url' => 'password', 'method' => 'post')); ?>
 
     <div class="row">   
        

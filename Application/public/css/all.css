@@ -32,13 +32,19 @@ li {
 }
 
 .box-form{
-        margin-right: 10px;
+/*        margin-right: 10px;*/
         padding: 20px;
         /*For mobile = 0px !*/
     }
 
+.box-form-left{
+        margin-right: 10px;
+        padding: 20px;
+    }    
+    
 .box-form-right{
     padding: 20px;
+    margin-left: 10px;
 }
 
 /**************************/
@@ -46,6 +52,12 @@ li {
 .navbar{
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
     background-color: #FFF;
+}
+
+.navbar button.topbar_logout{
+    float: right;
+    margin-top: 7px;
+    margin-right: 10px;
 }
 
 
@@ -277,6 +289,11 @@ font-weight: bold;
     padding: 0px;
 }
 
+.user div.row form{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 .btn_image{
     margin-top: 15px;
 }
@@ -284,8 +301,13 @@ font-weight: bold;
 .user_button{
     margin-top: 10px;
     margin-bottom: 10px;
-    float: right;
-    margin-right: 20px;
+    /*float: right;*/
+    width: 100%
+}
+
+.box-btn{
+/*     margin-right: 10px;*/
+     padding: 1px;
 }
 
 /*page not found*/
@@ -296,6 +318,16 @@ h1.page_not_fund{
     text-align: center;    
 }
 
+.user_button .back{
+/*    float: left;*/
+    margin-left: 20px;
+}
+
+.user_button .save{
+    float: right;
+    margin-right: 20px;
+    
+}
 
 /*MEDIA QUERY SIZE*/
 /* Extra small devices (phones, less than 768px) */
