@@ -2,8 +2,8 @@
 
 <!-- Users Block Wall -->
 <ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a href="/user"><?php echo $user->username; ?></a></li>
+  <li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
+  <li><a href="<?php echo URL::to('/user'); ?>"><?php echo $user->username; ?></a></li>
 </ol>
 
 <h3 class="wall_title"><?php echo $user->username; ?></h3>
@@ -29,12 +29,12 @@
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
                         <?php if($user->image): ?>
-                        <img src='./uploads/<?php echo $user->image; ?>' />
+                        <img src='<?php echo URL::to('/uploads/'); ?>/<?php echo $user->image; ?>' />
                         <?php else: ?>
-                        <img src='./img/user_default.png' />
+                        <img src='<?php echo URL::to('/img/'); ?>/user_default.png' />
                         <?php endif; ?>
                     </div>
-                    <a href="/userimage/<?php echo $user->id; ?>"><button type="button" class="btn_image btn btn-default">Change image</button></a>
+                    <a href="<?php echo URL::to('user/image'); ?>"><button type="button" class="btn_image btn btn-default">Change image</button></a>
                   </div>  
                   <div class="form-group border-bottom">
                     <label for="inputEmail" class="col-sm-3 control-label">Email</label>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password</label>
-                    <a href="/password" ><button type="button" class="btn_image btn btn-default">Change password</button></a>
+                    <a href="<?php echo URL::to('user/password'); ?>" ><button type="button" class="btn_image btn btn-default">Change password</button></a>
                   </div>
                 </div>
           </div> 
@@ -79,23 +79,7 @@
 
                     </div>
                   </div>
-                  
-                 <!--Add groupe for all children foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->  
-                 <!--foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->
-                 <!-- Not use for the moment  
-                 <div class="form-group">
-                    <label for="inputUsername" class="col-sm-3 control-label">City</label>
-                    <div class="col-sm-9">
-                      <select class="form-control">   
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                 -->
+
                   <div class="form-group">
                     <label for="sex" class="col-sm-3 control-label">Sex</label>
                      <div class="col-sm-9 <?php echo $errors->has('sex') ? 'has-error has-feedback' : ''; ?>">
@@ -139,9 +123,7 @@
         </div>
         <div class="box col-xs-12 col-sm-12 col-md-12">
             <div class="user_button">
-                <a href="javascript:history.back()">
-                    <button class="btn btn-default back">Back</button>
-                </a>
+                <a class="btn btn-default back" href="<?php echo URL::to('/'); ?>">Cancel</a>
                 <button type="submit" class="btn btn-primary save">Save</button>
             </div>
         </div>

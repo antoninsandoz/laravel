@@ -34,19 +34,19 @@
 
                     <small class="text-danger"><?php echo $errors->first('email'); ?></small>
                     <div class="form-group <?php echo $errors->has('email') ? 'has-error' : ''; ?>">
-                        <?php echo Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')); ?>
+                        <?php echo Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Email')); ?>
 
                     </div>
                     <small class="text-danger"><?php echo $errors->first('pass'); ?></small>
                     <div class="form-group <?php echo $errors->has('pass') ? 'has-error' : ''; ?>">
-                        <?php echo Form::text('password', null, array('class' => 'form-control', 'placeholder' => 'Password')); ?>
+                        <?php echo Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')); ?>
 
                     </div>
                     <button type="submit" class="btn btn-success">Sign in</button>
                 <?php echo Form::close(); ?>
 
             <?php else: ?>
-                <a href="/logout" ><button class="btn btn-danger topbar_logout">Log out</button></a>
+                <a href="<?php echo URL::to('/logout'); ?>" ><button class="btn btn-danger topbar_logout">Log out</button></a>
             <?php endif; ?>
             
         </div><!-- /.navbar-collapse -->

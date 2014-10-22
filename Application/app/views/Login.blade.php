@@ -2,6 +2,12 @@
 
 @section('content')
 
+    <!-- Users Block Wall -->
+    <ol class="breadcrumb">
+      <li><a href="{{URL::to('/')}}">Home</a></li>
+      <li><a href="{{URL::to('/login')}}">login</a></li>
+    </ol>
+
     <h3 class="wall_title">Login or Create a new account</h3>
 
     @if(Session::has('error'))
@@ -16,7 +22,7 @@
             {{ Form::open(array('url' => 'login', 'method' => 'post')) }}
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="box box-form">
-                        <h3 class="border-bottom">Log in</h3>
+                        <h3 class="border-bottom">Login</h3>
                         <div class="form-horizontal" role="form">
                             <div class="form-group">
                                 <small class="text-danger">{{ $errors->first('email') }}</small>
@@ -39,7 +45,7 @@
                             <a href="javascript:history.back()">
                                 <button class="btn btn-default back">Back</button>
                             </a>
-                            <button type="submit" class="btn btn-primary save">Log in</button>
+                            <button type="submit" class="btn btn-primary save">Login</button>
                         </div>
                     </div>    
                 </div>
@@ -115,9 +121,7 @@
                     </div>
                     <div class="box box-btn">
                         <div class="user_button">
-                            <a href="javascript:history.back()">
-                                <button class="btn btn-default back">Back</button>
-                            </a>
+                            <a class="btn btn-default back" href="{{URL::to('/')}}">Cancel</a>
                             <button type="submit" class="btn btn-primary save">Save</button>
                         </div>
                     </div>  

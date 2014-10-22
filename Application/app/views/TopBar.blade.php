@@ -33,16 +33,16 @@
                 {{ Form::open(array('url' => 'login', 'method' => 'post', 'class' => 'navbar-form navbar-right')) }}
                     <small class="text-danger">{{ $errors->first('email') }}</small>
                     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                        {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}
+                        {{ Form::email('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}
                     </div>
                     <small class="text-danger">{{ $errors->first('pass') }}</small>
                     <div class="form-group {{ $errors->has('pass') ? 'has-error' : '' }}">
-                        {{ Form::text('password', null, array('class' => 'form-control', 'placeholder' => 'Password')) }}
+                        {{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')) }}
                     </div>
                     <button type="submit" class="btn btn-success">Sign in</button>
                 {{ Form::close() }}
             @else
-                <a href="/logout" ><button class="btn btn-danger topbar_logout">Log out</button></a>
+                <a href="{{URL::to('/logout')}}" ><button class="btn btn-danger topbar_logout">Log out</button></a>
             @endif
             
         </div><!-- /.navbar-collapse -->

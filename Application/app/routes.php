@@ -11,32 +11,31 @@
 |
 */
 
-//home page
+//HOME page
 Route::get('/', 'HomeController@show');
+//Route::get('/', array('as' => 'home', 'uses' => 'HomeController@show'));
 
-//user controller
-//Route::resource('user', 'UserController');
+//USER
 Route::get('user', 'UserController@show');
 Route::post('user', 'UserController@update');
 Route::post('user/new', 'UserController@store');
-
 //password
-Route::get('password', 'UserController@password');
-Route::post('password', 'UserController@update');
+Route::get('user/password', 'UserController@password');
+Route::post('user/password', 'UserController@update');
 //userImage
-//Route::controller('Userimage', 'UserimageController');
-Route::get('userimage', 'UserimageController@getForm');
-Route::post('userimage', 'UserimageController@postForm');
+Route::get('user/image', 'UserimageController@getForm');
+Route::post('user/image', 'UserimageController@postForm');
 
-//login
+//LOGIN
 Route::get('login', 'LoginController@getLogin');
 Route::post('login', 'LoginController@postLogin');
 Route::get('logout', 'LoginController@getLogout');
 
-/*********WALL*********/
+//WALL
 //Route::resource('wall', 'WallController');
 Route::get('/wall/{id}', 'WallController@show');
-Route::get('/adminwall/{id_b}', 'WallController@adminshow');
+Route::get('/wall', 'WallController@showlogged'); //if no id check if logged
+Route::get('/adminwall', 'WallController@adminshow');
 
 // the url adress don't exist
 App::missing(function()

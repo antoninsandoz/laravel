@@ -1,38 +1,13 @@
 @extends('layouts/template')
 
-@section('topbar')
-
-<!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-  <ul class="nav navbar-nav">
-    <li class="active"><a href="#">Link</a></li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-        <li class="divider"></li>
-        <li><a href="#">One more separated link</a></li>
-      </ul>
-    </li>
-  </ul>
-  <form class="navbar-form navbar-right" role="form">
-      <div class="form-group">
-        <input type="text" placeholder="Email" class="form-control">
-      </div>
-      <div class="form-group">
-        <input type="password" placeholder="Password" class="form-control">
-      </div>
-      <button type="submit" class="btn btn-success">Sign in</button>
-  </form>
-</div><!-- /.navbar-collapse -->
-
-@stop
 
 @section('content')     <!-- content-->
+
+<!-- Users Block Wall -->
+<ol class="breadcrumb">
+    <li><a href="{{URL::to('/')}}">Home</a></li>
+    <li><a href="{{URL::to('/adminwall')}}">{{$user->username }} - birds</a></li>
+</ol>
 
 <!-- Users Block Wall -->
 <h3 class="wall_title">Discover all BirdsWink of {{ $user->username }} !</h3>
@@ -40,83 +15,186 @@
     <div class="row">      
         <div class="col-xs-6 col-sm-2 col-md-2">
             <div class="user_image">
-                <img src="../img/user_default.png" />
+                @if($user->image)
+                <img src='{{URL::to('/uploads/')}}/{{$user->image}}' />
+                @else
+                <img src='{{URL::to('/img/')}}/user_default.png' />
+                @endif
             </div>
         </div>
         <div class="name col-xs-6 col-sm-4 col-md-4">
-            <h4>{{ $user->name }}</h4>
+            <h4>{{$user->username}}</h4>
             <span>{{ $user->country }}</span>
-            <span> | </span>
-            <span>{{ $user->city }}</span>
         </div>  
+
         <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted">{{$user_likes}}</span></div>
-          <p>Likes</p>
+            <div>
+                <a href="#">
+                    <span class="badge pull-right">{{$user_likes}}</span>
+                    Likes
+                </a>
+            </div>
         </div>
         <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted">{{$user_comments}}</span></div>
-          <p>Comments</p>
+            <div>
+                <a href="#">
+                    <span class="badge pull-right">{{$user_comments}}</span>
+                    Comments
+                </a>
+            </div>
         </div>
         <div class="number col-xs-4 col-sm-2 col-md-2">
-          <div class="circle" ><span class="text-muted">{{$user_pictures}}</span></div>
-          <p>Pictures<p>
-        </div>     
+            <div>
+                <a href="#">
+                    <span class="badge pull-right">{{$user_pictures}}</span>
+                    Pictures
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class=" container-fluid clearfix ">
+<!--<div class=" container-fluid clearfix ">
     <div class="row">
-        @foreach($allpictures as $pict)
-        @if($pict->wall == 1)
-        <div class="wall_block box ">
-            <div class="wall_image_block"> 
-                <a href="/" >
-                    <div class="hover">
-                        <div>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                    <span class="glyphicon glyphicon glyphicon-heart"></span>
-                                </button>
-                            </a>
-                            <a href="/" >    
-                                <button type="button" class="btn btn-sm">
-                                    <span class="glyphicon glyphicon glyphicon-comment"></span>
-                                </button>
-                            </a>
+        @if($allpictures != false)
+            <?php $n = 0 ?>
+            @foreach($allpictures as $pict)
+            @if($pict->wall == 1)
+            <?php $n++ ?>
+            <div class="wall_block box <?php    if($n % 5 == 0){echo 'fifth_image ';}
+                                                if($n % 4 == 0){echo 'fourth_image ';} 
+                                                if($n % 3 == 0){echo 'third_image ';} 
+                                                if($n % 2 == 0){echo 'second_image ';} ?> ">
+                <div class="wall_image_block"> 
+                    <a href="/" >
+                        <div class="hover">
+                            <div>
+                                <a href="/" >
+                                    <button type="button" class="btn btn-sm">
+                                        <span class="glyphicon glyphicon glyphicon-heart"></span>
+                                    </button>
+                                </a>
+                                <a href="/" >    
+                                    <button type="button" class="btn btn-sm">
+                                        <span class="glyphicon glyphicon glyphicon-comment"></span>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
-                </a>
-                <div class="img_info">
-                    <a href="/" ><p class="name">{{$pict->name}}</p></a>
-                    <p class="date border">
-                        {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}
-                    </p>
-                    @if($pict->comment>0 OR $pict->like>0)
-                    <p class="like_comment border">
-                        @if($pict->comment>0)
-                        <a href="/">
-                            <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
-                            <span class="comment">{{$pict->comment}}</span>
-                        </a>
+                        {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
+                    </a>
+                    <div class="img_info">
+                        <a href="/" ><p class="name">{{$pict->name}}</p></a>
+                        <p class="date border">
+                            {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}
+                        </p>
+                        @if($pict->comment>0 OR $pict->like>0)
+                        <p class="like_comment border">
+                            @if($pict->comment>0)
+                            <a href="/">
+                                <span class="glyphicon glyphicon-comment"></span> Icone 
+                                <span class="comment">{{$pict->comment}}</span>
+                            </a>
+                            @endif
+                            @if($pict->like>0)
+                            <a href="/" >
+                                <span class="glyphicon glyphicon-heart"></span> Icone 
+                                <span class="like">{{$pict->like}}</span>
+                            </a>
+                            @endif
+                        </p>
                         @endif
-                        @if($pict->like>0)
-                        <a href="/" >
-                            <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
-                            <span class="like">{{$pict->like}}</span>
-                        </a>
+                        @if($pict->legend)
+                         If user legend 
+                        <p class="legend">{{$pict->legend}}</p>
                         @endif
-                    </p>
-                    @endif
-                    @if($pict->legend)
-                    <!-- If user legend -->
-                    <p class="legend">{{$pict->legend}}</p>
-                    @endif
-                </div>     
-            </div>    
+                    </div>     
+                </div>    
+            </div>
+            @endif
+            @endforeach
+        @else
+        <br/>
+        <div class="alert alert-danger" role="alert">
+            <p> No pictures found !</p>
         </div>
+            
         @endif
-        @endforeach 
-    </div>
-</div>
+        -->
+        
+        <div class=" container-fluid clearfix ">    
+            <div id="wall" class="row">
+            @if($allpictures != false)
+                <?php $n = 0 ?>
+                @foreach($allpictures as $pict)
+                @if($pict->wall == 1)
+                <?php $n++ ?>
+                <div class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3     
+                <?php   if($n % 5 == 0){echo 'fifth_image ';}
+                        if($n % 4 == 0){echo 'fourth_image ';} 
+                        if($n % 3 == 0){echo 'third_image ';} 
+                        if($n % 2 == 0){echo 'second_image ';} ?> ">
+                  <div class="thumbnail">
+                    <div id="wall_{{$n}}" class="wall_image_block"> 
+                        <a href="/" >
+                            <div class="hover">
+                                <div>
+                                    <a href="/" >
+                                        <button type="button" class="btn btn-sm">
+                                            <span class="glyphicon glyphicon glyphicon-heart"></span>
+                                        </button>
+                                    </a>
+                                    <a href="/" >    
+                                        <button type="button" class="btn btn-sm">
+                                            <span class="glyphicon glyphicon glyphicon-comment"></span>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                            {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
+                        </a>
+                        <div class="img_info">
+                            <a href="/" ><p class="name">{{$pict->name}}</p></a>
+                            <p class="date border">
+                                {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}
+                            </p>
+                            @if($pict->comment>0 OR $pict->like>0)
+                            <p class="like_comment border">
+                                @if($pict->comment>0)
+                                <a href="/">
+                                    <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
+                                    <span class="comment">{{$pict->comment}}</span>
+                                </a>
+                                @endif
+                                @if($pict->like>0)
+                                <a href="/" >
+                                    <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
+                                    <span class="like">{{$pict->like}}</span>
+                                </a>
+                                @endif
+                            </p>
+                            @endif
+                            @if($pict->legend)
+                            <!-- If user legend -->
+                            <p class="legend">{{$pict->legend}}</p>
+                            @endif
+                        </div>     
+                    </div>    
+                  </div>
+                </div>
+                
+                @endif
+                @endforeach
+            @else
+            <br/>
+            <div class="alert alert-danger" role="alert">
+                <p> No pictures found !</p>
+            </div>
+            @endif
+            
+        </div>
+    </div> 
+        
+    {{ HTML::script('js/wall.js'); }}
+
 @stop <!-- /content-->

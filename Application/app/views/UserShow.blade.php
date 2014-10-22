@@ -4,8 +4,8 @@
 
 <!-- Users Block Wall -->
 <ol class="breadcrumb">
-  <li><a href="/">Home</a></li>
-  <li><a href="/user">{{$user->username }}</a></li>
+  <li><a href="{{URL::to('/')}}">Home</a></li>
+  <li><a href="{{URL::to('/user')}}">{{$user->username }}</a></li>
 </ol>
 
 <h3 class="wall_title">{{ $user->username }}</h3>
@@ -30,12 +30,12 @@
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
                         @if($user->image)
-                        <img src='./uploads/{{$user->image}}' />
+                        <img src='{{URL::to('/uploads/')}}/{{$user->image}}' />
                         @else
-                        <img src='./img/user_default.png' />
+                        <img src='{{URL::to('/img/')}}/user_default.png' />
                         @endif
                     </div>
-                    <a href="/userimage/{{$user->id}}"><button type="button" class="btn_image btn btn-default">Change image</button></a>
+                    <a href="{{URL::to('user/image')}}"><button type="button" class="btn_image btn btn-default">Change image</button></a>
                   </div>  
                   <div class="form-group border-bottom">
                     <label for="inputEmail" class="col-sm-3 control-label">Email</label>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <label for="password" class="col-sm-3 control-label">Password</label>
-                    <a href="/password" ><button type="button" class="btn_image btn btn-default">Change password</button></a>
+                    <a href="{{URL::to('user/password')}}" ><button type="button" class="btn_image btn btn-default">Change password</button></a>
                   </div>
                 </div>
           </div> 
@@ -76,23 +76,7 @@
                         {{ Form::select('country', array('Switzerland' => 'Switzerland'), 'Switzerland', array('class' => 'form-control')) }}
                     </div>
                   </div>
-                  
-                 <!--Add groupe for all children foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->  
-                 <!--foreach + if http://api.geonames.org/children?geonameId=2660717&username=antoninsandoz-->
-                 <!-- Not use for the moment  
-                 <div class="form-group">
-                    <label for="inputUsername" class="col-sm-3 control-label">City</label>
-                    <div class="col-sm-9">
-                      <select class="form-control">   
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                 -->
+
                   <div class="form-group">
                     <label for="sex" class="col-sm-3 control-label">Sex</label>
                      <div class="col-sm-9 {{ $errors->has('sex') ? 'has-error has-feedback' : '' }}">
@@ -130,9 +114,7 @@
         </div>
         <div class="box col-xs-12 col-sm-12 col-md-12">
             <div class="user_button">
-                <a href="javascript:history.back()">
-                    <button class="btn btn-default back">Back</button>
-                </a>
+                <a class="btn btn-default back" href="{{URL::to('/')}}">Cancel</a>
                 <button type="submit" class="btn btn-primary save">Save</button>
             </div>
         </div>

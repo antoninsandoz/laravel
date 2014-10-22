@@ -24,10 +24,30 @@ class WallController extends BaseController {
 		return View::make('WallShow',  $this->wall_gestion->show($id));
 	}
         
+        //public wall display if logged
+	public function showlogged()
+	{  
+            if (Auth::check())
+            {
+                $id = Auth::id();
+                return View::make('WallShow',  $this->wall_gestion->show($id));
+            }
+            else
+                return Redirect::to('login')
+                ->with('error','Please login');
+	}
+        
         //Admin wall display 
-	public function adminshow($id_b)
-	{
-		return View::make('WallAdminShow',  $this->wall_gestion->adminshow($id_b));
+	public function adminshow()
+	{   
+            if (Auth::check())
+            {
+                $id = Auth::id();
+                return View::make('WallAdminShow',  $this->wall_gestion->adminshow($id_b));
+            }
+            else
+                return Redirect::to('login')
+                ->with('error','Please login');
 	}
 
 }

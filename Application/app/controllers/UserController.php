@@ -43,7 +43,7 @@ class UserController extends BaseController {
                         $email = Input::get('email_new');
                         $password = Input::get('password_new');
                         Auth::attempt(array('email' => $email, 'password' => $password));
-                        return Redirect::to('user')
+                        return Redirect::to('login')
                         ->with('ok','Thank you for registering');
 		}		
 	}
@@ -57,7 +57,8 @@ class UserController extends BaseController {
                 return View::make('UserShow',  $this->user_gestion->show($id));
             }
             else
-                return View::make('login');
+                return Redirect::to('login')
+                ->with('error','Please login');
             
 	}
         

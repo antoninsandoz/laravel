@@ -1,5 +1,11 @@
 <?php $__env->startSection('content'); ?>
 
+    <!-- Users Block Wall -->
+    <ol class="breadcrumb">
+      <li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
+      <li><a href="<?php echo URL::to('/login'); ?>">login</a></li>
+    </ol>
+
     <h3 class="wall_title">Login or Create a new account</h3>
 
     <?php if(Session::has('error')): ?>
@@ -15,7 +21,7 @@
 
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="box box-form">
-                        <h3 class="border-bottom">Log in</h3>
+                        <h3 class="border-bottom">Login</h3>
                         <div class="form-horizontal" role="form">
                             <div class="form-group">
                                 <small class="text-danger"><?php echo $errors->first('email'); ?></small>
@@ -40,7 +46,7 @@
                             <a href="javascript:history.back()">
                                 <button class="btn btn-default back">Back</button>
                             </a>
-                            <button type="submit" class="btn btn-primary save">Log in</button>
+                            <button type="submit" class="btn btn-primary save">Login</button>
                         </div>
                     </div>    
                 </div>
@@ -127,9 +133,7 @@
                     </div>
                     <div class="box box-btn">
                         <div class="user_button">
-                            <a href="javascript:history.back()">
-                                <button class="btn btn-default back">Back</button>
-                            </a>
+                            <a class="btn btn-default back" href="<?php echo URL::to('/'); ?>">Cancel</a>
                             <button type="submit" class="btn btn-primary save">Save</button>
                         </div>
                     </div>  

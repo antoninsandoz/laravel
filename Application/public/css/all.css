@@ -13,6 +13,7 @@ body{
 
 .box{
     margin-top: 15px;
+    margin-bottom: 15px;
     border-radius: 6px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
     background: #fff;
@@ -151,8 +152,29 @@ font-weight: bold;
     padding-left: 15px;
 }
 
-.wall div.row div.number span{
-    font-size: 20px;
+/*wall number likes, comment, etc*/
+
+.wall div.row div.number{
+    padding: 10px;
+}
+
+.wall div.row div.number div{
+    margin-top: 2px;
+    border-radius: 5px;
+    background-color: #428bca;
+    
+    padding: 10px;
+}
+
+.wall div.row div.number a{
+    font-size: 16px;
+    color: white;
+}
+
+.wall div.row div.number a span{/*badge*/
+    background-color: white;
+    font-size: 14px;
+    color: #428bca;
 }
 
 .wall div.row div.name span{
@@ -171,15 +193,21 @@ font-weight: bold;
 /*WALL image Block*/
 .wall_block {
     /*SIZE Media query*/
-    margin-right: 15px;
-    padding: 0px;
+    /*Margin media query*/
+    padding-left: 0px;
+    padding-right: 12px;
     float: left;
+}
+
+.wall_block div.thumbnail{
+  padding: 0px;
+  border-radius: 6px;
 }
 
 /*hover*/
 .wall_block div.hover{
     
-    width: 210px;
+    width: 226px;
     height: 50px;
     position: absolute; 
     
@@ -222,7 +250,8 @@ font-weight: bold;
 }
 
 .wall_block img{
-    /*SIZE Media query*/
+
+    width: 100%;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
 }
@@ -333,13 +362,6 @@ h1.page_not_fund{
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
-/*Wall image Block*/
-.wall_block, 
-.wall_block img {
-
- 
-}
-
 /* Extra small devices (phones, less than 768px) */
 /*Mobile XS*/
 @media (max-width: 768px) {  
@@ -348,29 +370,39 @@ h1.page_not_fund{
         margin-right: 0px;
     }
     
+    .second_image{
+        padding-right: 0px;
+    }
+
 }
 
 /* Small devices (tablets, 768px and up) */
 /*Tablette SM*/
-@media (min-width: 768px) and (max-width: 992px ) {  }
+@media (min-width: 768px) and (max-width: 992px ) { 
+
+    .third_image{
+        padding-right: 0px;
+    }
+
+}
 
 /* Medium devices (desktops, 992px and up) */
 /*PC MD*/
 @media (min-width: 992px ) and (max-width: 1200px ) { 
 
-.wall_block, 
-.wall_block img,
-.wall_block div.hover{
-    width: 210px;  
-}
-
+    .fourth_image {
+        padding-right: 0px;
+    }
 }
 
 /* Large devices (large desktops, 1200px and up) */
 /*PC LG*/
 @media (min-width: 1200px) {  
-
-
+    
+    .fourth_image {
+        padding-right: 0px;
+    }
+    
 }
 
 
