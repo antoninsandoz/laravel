@@ -2,7 +2,7 @@
 
 interface WallGestionInterface {
 
-	public function show($id);
+	public function show($id, $pagination);
         
         public function adminshow($id_b);
 }

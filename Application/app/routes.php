@@ -33,8 +33,8 @@ Route::get('logout', 'LoginController@getLogout');
 
 //WALL
 //Route::resource('wall', 'WallController');
-Route::get('/wall/{id}', 'WallController@show');
-Route::get('/wall', 'WallController@showlogged'); //if no id check if logged
+Route::get('/wall/{id}/{pagination}', 'WallController@show');
+//Route::get('/wall', 'WallController@showlogged'); //if no id check if logged
 Route::get('/adminwall', 'WallController@adminshow');
 
 // the url adress don't exist

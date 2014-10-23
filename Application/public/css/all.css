@@ -73,7 +73,7 @@ li {
 /*MAIN*/
 
 .main{
-    margin-top: 50px; //for compensation of navigation bar top
+    margin-top: 50px; 
 }
 
 .wall_title{
@@ -87,12 +87,23 @@ li {
 
 /**************************/
 /*WALL*/
+
+#wall{
+    position: relative;
+}
+
 .wall{
-    min-height: 60px; 
+    min-height: 60px;
+    
 }
 .wall h4{
 font-weight: bold;
 }
+
+.wall_pagination{
+    float:right;
+}
+
 .user_image{
     margin-top: 10px;
     float: left;
@@ -161,20 +172,20 @@ font-weight: bold;
 .wall div.row div.number div{
     margin-top: 2px;
     border-radius: 5px;
-    background-color: #428bca;
+    border: 1px dashed #428BCA;
     
     padding: 10px;
 }
 
 .wall div.row div.number a{
-    font-size: 16px;
-    color: white;
+    font-size: 14px;
+    color: #428bca;
 }
 
 .wall div.row div.number a span{/*badge*/
-    background-color: white;
+    background-color: #428bca;
     font-size: 14px;
-    color: #428bca;
+    color: white;
 }
 
 .wall div.row div.name span{
@@ -370,8 +381,12 @@ h1.page_not_fund{
         margin-right: 0px;
     }
     
-    .second_image{
-        padding-right: 0px;
+    .wall div.row div.number a{
+        font-size: 10px;
+    }
+
+    .wall div.row div.number a span{/*badge*/
+        font-size: 10px;
     }
 
 }
@@ -380,9 +395,9 @@ h1.page_not_fund{
 /*Tablette SM*/
 @media (min-width: 768px) and (max-width: 992px ) { 
 
-    .third_image{
+/*    .third_image{
         padding-right: 0px;
-    }
+    }*/
 
 }
 
@@ -390,18 +405,18 @@ h1.page_not_fund{
 /*PC MD*/
 @media (min-width: 992px ) and (max-width: 1200px ) { 
 
-    .fourth_image {
+/*    .fourth_image {
         padding-right: 0px;
-    }
+    }*/
 }
 
 /* Large devices (large desktops, 1200px and up) */
 /*PC LG*/
 @media (min-width: 1200px) {  
-    
+/*    
     .fourth_image {
         padding-right: 0px;
-    }
+    }*/
     
 }
 

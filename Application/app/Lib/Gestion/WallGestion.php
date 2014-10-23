@@ -8,8 +8,10 @@ use Hash;
 
 class WallGestion implements WallGestionInterface {
 
-	public function show($id)
-	{       
+	public function show($id, $pagination)
+	{     
+                //Number of image in a page
+                $number_of_block = 16;
                 $user = User::find($id);
 		$boxes = User::find($id)->boxes;
                     
@@ -48,8 +50,16 @@ class WallGestion implements WallGestionInterface {
                         {
                             return $value['date'];
                         })));
-                     
-                        return compact('user', 'boxes', 'allpictures','user_likes', 'user_comments', 'user_pictures');
+                        
+                        //cut table picutre in function of pagination
+                        $offset = $number_of_block*($pagination-1);
+                        $lenght = $number_of_block*$pagination;
+                        $allpictures = array_slice($allpictures, $offset, $lenght);
+                        
+                        //calculate nb of page
+                        $nbofpage = ceil($n/$number_of_block);
+
+                        return compact('user', 'boxes', 'allpictures','user_likes', 'user_comments', 'user_pictures', 'pagination', 'nbofpage');
                     }
                     else{
                         $allpictures = false;

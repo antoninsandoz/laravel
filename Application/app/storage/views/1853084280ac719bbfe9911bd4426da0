@@ -10,7 +10,7 @@
 <h3 class="wall_title">Discover all BirdsWink of <?php echo $user->username; ?> !</h3>
 <div class="wall box container-fluid clearfix">
     <div class="row">      
-        <div class="col-xs-6 col-sm-2 col-md-2">
+        <div class="col-xs-6 col-sm-1 col-md-1">
             <div class="user_image">
                 <?php if($user->image): ?>
                 <img src='<?php echo URL::to('/uploads/'); ?>/<?php echo $user->image; ?>' />
@@ -19,12 +19,12 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="name col-xs-6 col-sm-4 col-md-4">
+        <div class="name col-xs-6 col-sm-2 col-md-2">
             <h4><?php echo $user->username; ?></h4>
             <span><?php echo $user->country; ?></span>
         </div>  
 
-        <div class="number col-xs-4 col-sm-2 col-md-2">
+        <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
                 <a href="#">
                     <span class="badge pull-right"><?php echo $user_likes; ?></span>
@@ -32,7 +32,7 @@
                 </a>
             </div>
         </div>
-        <div class="number col-xs-4 col-sm-2 col-md-2">
+        <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
                 <a href="#">
                     <span class="badge pull-right"><?php echo $user_comments; ?></span>
@@ -40,7 +40,7 @@
                 </a>
             </div>
         </div>
-        <div class="number col-xs-4 col-sm-2 col-md-2">
+        <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
                 <a href="#">
                     <span class="badge pull-right"><?php echo $user_pictures; ?></span>
@@ -50,18 +50,20 @@
         </div>
     </div>
 </div>
-
-<!--<div class=" container-fluid clearfix ">
-    <div class="row">
-        <?php if($allpictures != false): ?>
-            <?php $n = 0 ?>
-            <?php foreach($allpictures as $pict): ?>
-            <?php if($pict->wall == 1): ?>
-            <?php $n++ ?>
-            <div class="wall_block box <?php    if($n % 5 == 0){echo 'fifth_image ';}
-                                                if($n % 4 == 0){echo 'fourth_image ';} 
-                                                if($n % 3 == 0){echo 'third_image ';} 
-                                                if($n % 2 == 0){echo 'second_image ';} ?> ">
+     
+<div class=" container-fluid clearfix ">    
+    <div id="wall" class="row">
+    <?php if($allpictures != false): ?>
+        <?php $n = 0 ?>
+        <?php foreach($allpictures as $pict): ?>
+        <?php if($pict->wall == 1): ?>
+        <?php $n++ ?>
+            <div id="wall_<?php echo $n; ?>" class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3     
+            <?php   if($n % 5 == 0){echo 'fifth_image ';}
+                    if($n % 4 == 0){echo 'fourth_image ';} 
+                    if($n % 3 == 0){echo 'third_image ';} 
+                    if($n % 2 == 0){echo 'second_image ';} ?> ">
+              <div id="wall_size<?php echo $n; ?>" class="thumbnail">
                 <div class="wall_image_block"> 
                     <a href="/" >
                         <div class="hover">
@@ -91,25 +93,27 @@
                         <p class="like_comment border">
                             <?php if($pict->comment>0): ?>
                             <a href="/">
-                                <span class="glyphicon glyphicon-comment"></span> Icone 
+                                <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
                                 <span class="comment"><?php echo $pict->comment; ?></span>
                             </a>
                             <?php endif; ?>
                             <?php if($pict->like>0): ?>
                             <a href="/" >
-                                <span class="glyphicon glyphicon-heart"></span> Icone 
+                                <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
                                 <span class="like"><?php echo $pict->like; ?></span>
                             </a>
                             <?php endif; ?>
                         </p>
                         <?php endif; ?>
                         <?php if($pict->legend): ?>
-                         If user legend 
+                        <!-- If user legend -->
                         <p class="legend"><?php echo $pict->legend; ?></p>
                         <?php endif; ?>
                     </div>     
                 </div>    
+              </div>
             </div>
+
             <?php endif; ?>
             <?php endforeach; ?>
         <?php else: ?>
@@ -117,85 +121,19 @@
         <div class="alert alert-danger" role="alert">
             <p> No pictures found !</p>
         </div>
-            
         <?php endif; ?>
-        -->
-        
-        <div class=" container-fluid clearfix ">    
-            <div id="wall" class="row">
-            <?php if($allpictures != false): ?>
-                <?php $n = 0 ?>
-                <?php foreach($allpictures as $pict): ?>
-                <?php if($pict->wall == 1): ?>
-                <?php $n++ ?>
-                <div class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3     
-                <?php   if($n % 5 == 0){echo 'fifth_image ';}
-                        if($n % 4 == 0){echo 'fourth_image ';} 
-                        if($n % 3 == 0){echo 'third_image ';} 
-                        if($n % 2 == 0){echo 'second_image ';} ?> ">
-                  <div class="thumbnail">
-                    <div id="wall_<?php echo $n; ?>" class="wall_image_block"> 
-                        <a href="/" >
-                            <div class="hover">
-                                <div>
-                                    <a href="/" >
-                                        <button type="button" class="btn btn-sm">
-                                            <span class="glyphicon glyphicon glyphicon-heart"></span>
-                                        </button>
-                                    </a>
-                                    <a href="/" >    
-                                        <button type="button" class="btn btn-sm">
-                                            <span class="glyphicon glyphicon glyphicon-comment"></span>
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php echo HTML::image('uploads/'.$pict->Picture_url, $pict->name); ?>
+    </div>
+</div> 
 
-                        </a>
-                        <div class="img_info">
-                            <a href="/" ><p class="name"><?php echo $pict->name; ?></p></a>
-                            <p class="date border">
-                                <?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?>
-
-                            </p>
-                            <?php if($pict->comment>0 OR $pict->like>0): ?>
-                            <p class="like_comment border">
-                                <?php if($pict->comment>0): ?>
-                                <a href="/">
-                                    <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
-                                    <span class="comment"><?php echo $pict->comment; ?></span>
-                                </a>
-                                <?php endif; ?>
-                                <?php if($pict->like>0): ?>
-                                <a href="/" >
-                                    <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
-                                    <span class="like"><?php echo $pict->like; ?></span>
-                                </a>
-                                <?php endif; ?>
-                            </p>
-                            <?php endif; ?>
-                            <?php if($pict->legend): ?>
-                            <!-- If user legend -->
-                            <p class="legend"><?php echo $pict->legend; ?></p>
-                            <?php endif; ?>
-                        </div>     
-                    </div>    
-                  </div>
-                </div>
-                
-                <?php endif; ?>
-                <?php endforeach; ?>
-            <?php else: ?>
-            <br/>
-            <div class="alert alert-danger" role="alert">
-                <p> No pictures found !</p>
-            </div>
-            <?php endif; ?>
-            
-        </div>
-    </div> 
-        
+<div class="wall_pagination">
+    <ul class="pagination pagination-lg">
+      <li <?php if($pagination==1): ?> class="disabled" <?php endif; ?>><a href="<?php echo URL::to('/wall/'.$user->id.'/'.($pagination-1)); ?>">&laquo;</a></li>
+      <?php for($i = 0; $i < $nbofpage; $i++): ?>
+        <li <?php if($pagination==$i+1): ?> class="active" <?php endif; ?>><a href="<?php echo URL::to('/wall/'.$user->id.'/'.($i+1)); ?>"><?php echo $i+1; ?> </a></li>
+      <?php endfor; ?>
+      <li <?php if($pagination==$nbofpage): ?> class="disabled" <?php endif; ?>><a href="<?php echo URL::to('/wall/'.$user->id.'/'.($pagination+1)); ?>">&raquo</a></li>
+    </ul>
+</div>        
     <?php echo HTML::script('js/wall.js');; ?>
 
 

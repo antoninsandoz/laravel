@@ -19,18 +19,18 @@ class WallController extends BaseController {
 	}
 
         //public wall display  
-	public function show($id)
+	public function show($id, $pagination)
 	{
-		return View::make('WallShow',  $this->wall_gestion->show($id));
+		return View::make('WallShow',  $this->wall_gestion->show($id, $pagination));
 	}
         
         //public wall display if logged
-	public function showlogged()
+	public function showlogged($pagination)
 	{  
             if (Auth::check())
             {
                 $id = Auth::id();
-                return View::make('WallShow',  $this->wall_gestion->show($id));
+                return View::make('WallShow',  $this->wall_gestion->show($id, $pagination));
             }
             else
                 return Redirect::to('login')

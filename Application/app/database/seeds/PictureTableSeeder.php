@@ -4,15 +4,15 @@ class PictureTableSeeder extends Seeder {
 
     public function run()
 	{
-		for($i = 1; $i < 20; ++$i)
+		for($i = 1; $i < 60; ++$i)
 		{
                                                                
 			$time = time()+($i * 2 * 13 * 59 * 59);
 			
-                        if($i<5)
+                        if($i<55)
                             $box_id = 1;
                         else
-                            $box_id = $i;
+                            $box_id = $i-54;
                         
 			DB::table('pictures')->insert(array(
 					
