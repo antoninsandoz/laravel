@@ -14,6 +14,28 @@ class PictureTableSeeder extends Seeder {
                         else
                             $box_id = $i-54;
                         
+                        //creat variation natural
+                        if($i%3 == 0){
+                            $like = 2;
+                            $comment =0;
+                            $legend = 'text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text ';
+                        }
+                        elseif($i%4 == 0){
+                            $like = 0;
+                            $comment =2;
+                            $legend = 'text text text text text text text text text text text text text text text';
+                        }
+                        elseif($i%5 == 0){
+                            $like = 0;
+                            $comment = 0;
+                            $legend = 'text text text text text text text text text text text text text text text ext text text text text text text text text text text text text text text ext text text text text text text text text text text text text text text';
+                        }
+                        else{
+                            $like = 3;
+                            $comment =4;
+                            $legend = 'text text text text text text';
+                        }
+                        
 			DB::table('pictures')->insert(array(
 					
 					'boxe_id' => $box_id,
@@ -21,9 +43,9 @@ class PictureTableSeeder extends Seeder {
 					'name' => 'Nom' . $i,
 					'date' => $time,
 					'wall' => true,
-					'like' => $i,
-					'comment' => $i,
-                                        'legend' => 'text text text text text text text text text text text text text text text text '.$i,
+					'like' => $like,
+					'comment' => $comment,
+                                        'legend' => $legend
 				));
 		}
 	}

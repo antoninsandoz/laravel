@@ -7,17 +7,16 @@ class UserTableSeeder extends Seeder {
 		for($i = 1; $i < 20; ++$i)
 		{
 		
-			$time = time()+ $i;
-			$time2 = time()-($i * 24 * 60 * 60);
+//			$time = time()+ $i;
+//			$time2 = time()-($i * 24 * 60 * 60);
 			
 			DB::table('users')->insert(array(
 					
-					'email' => 'email' . $i . '@test.com',
-                                        'username' => 'UserName' . $i,
+					'email' => 'antoninsandoz' . $i . '@posteo.de',
+                                        'username' => 'Antonin' . $i,
                                         'image' =>  '', //empty !!
 					'password' => Hash::make('1234'),
-					'city' => 'city' . $i,
-					'country' => 'country' . $i,
+					'country' => 'Switzerland',
                                         'sex' => 'men',
 					'Languages_iso' => 'fr'
                                         
