@@ -17,7 +17,7 @@ class BoxeTableSeeder extends Seeder {
 			DB::table('boxes')->insert(array(
 					
 					'user_id' => $user_id,
-					'name' => 'Nom' . $i,
+					'name' => 'NomBox' . $i,
 					'country' => 'country' . $i,
                                         'city' => 'city' . $i,
 					'battery' => 5*$i,

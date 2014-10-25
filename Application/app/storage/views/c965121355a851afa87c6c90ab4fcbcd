@@ -1,0 +1,160 @@
+<?php $__env->startSection('content'); ?>     <!-- content-->
+
+<!-- Users Block Wall -->
+<ol class="breadcrumb">
+    <li><a href="<?php echo URL::to('/'); ?>">Home</a></li>
+    <li><a href="<?php echo URL::to('/adminwall'); ?>"><?php echo $user->username; ?> - Admin</a></li>
+</ol>
+
+<!-- Users Block Wall -->
+<h3 class="wall_title"> <?php echo $user->username; ?> : Management area of your boxes</h3>
+
+<div class="adminwall  wall box container-fluid clearfix">
+    <div class="row">      
+        <div class="col-xs-12 col-sm-3 col-md-3">
+            <div class="select_box">
+              <ul class="nav navbar-nav">
+              <?php if(count($boxes)>1): ?>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-camera"></span> 
+                    <?php echo $boxes[0]->name; ?> 
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <?php foreach($boxes as $box): ?>
+                        <?php if(count($boxes)>1): ?>
+                      <li><a href="#"><?php echo $box->name; ?></a></li>
+                        <?php endif; ?>
+                    <?php endforeach; ?> 
+                </ul>
+              </li>
+              <?php else: ?>       
+                <li class="dropdown">
+                    <a><?php echo $boxes[0]->name; ?></a>
+                </li>
+              <?php endif; ?>
+            </ul>
+            </div>
+        </div>
+        <div class="number col-xs-4 col-sm-3 col-md-3">
+            <div>
+                <a href="#">
+                    <span class="badge pull-right"><?php echo $boxe->battery; ?>%</span>
+                    Battery
+                </a>
+            </div>
+        </div>
+        <div class="number col-xs-4 col-sm-3 col-md-3">
+            <div>
+                <a href="#">
+                    <span class="badge pull-right"><?php echo $pictureoftheday; ?></span>
+                    Pictures, today
+                </a>
+            </div>
+        </div>
+        <div class="number col-xs-4 col-sm-3 col-md-3">
+            <div>
+                <a href="#">
+                    <span class="badge pull-right"><?php echo $pictureoftheweek; ?></span>
+                    Pictures, week
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" container-fluid clearfix ">
+    <div id="wall" class="row">
+        <?php $n = 0 ?>
+        <?php foreach($pictures as $pict): ?>      
+        <?php $n++ ?>
+        <div id="wall_<?php echo $n; ?>" class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3">
+            <div class="wall_block box">
+                <div class="wall_image_block"> 
+                    <div class="hover">
+
+                        <div>
+                            <a href="/" >
+                                <button type="button" class="btn btn-sm">
+                                <span class="glyphicon glyphicon-ban-circle"></span>
+                                </button>
+                            </a>
+                            <a href="/" >
+                                <button type="button" class="btn btn-sm">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </button>
+                            </a>
+                            <a href="/" >
+                                <button type="button" class="btn btn-sm">
+                                <?php if($pict->wall == 0): ?>    
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                                <?php else: ?>
+                                <span class="glyphicon glyphicon-minus-sign"></span>
+                                </button>
+                                <?php endif; ?>
+                            </a>
+                        </div>
+
+                    </div>
+                    <a href="/test" > 
+                        <?php echo HTML::image('uploads/'.$pict->Picture_url, $pict->name); ?>
+
+                    </a>
+                    <div class="img_info">
+                        <a href="/" ><p class="name"><?php echo $pict->name; ?></p></a>
+                        <p class="date border">
+                            <?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?>
+
+                        </p>
+                        <!-- If like or comment -->
+                        <p class="add_wall border">
+
+
+                            <!-- If NOT on the wall -->
+                            <?php if($pict->wall == 0): ?>
+                                <span class="glyphicon glyphicon-plus-sign"></span><!-- Icone -->
+                                <a href="/">
+                                    <span class="walladd">Add to my wall</span>
+                                </a>
+                            <?php else: ?> 
+                                <span class="glyphicon glyphicon-minus-sign"></span><!-- Icone -->
+                                <a href="/">
+                                    <span class="walladd">Remove from my wall</span>
+                                </a>
+                            <?php endif; ?>
+
+                        </p>
+                        <p class="add_comment border">
+                            <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
+                            <!-- If NO description / legend -->
+                            <?php if($pict->legend=0): ?>
+                            <a href="/">
+                                <span class="comment">Add description</span>
+                            </a>
+                            <?php else: ?>
+                            <a href="/">
+                                <span class="comment">Modify description</span>
+                            </a>
+                            <?php endif; ?>
+                        </p>
+                        <p class="delete ">
+                            <span class="glyphicon glyphicon-ban-circle"></span><!-- Icone -->
+                            <a href="/">
+                                <span class="comment">Delete</span>
+                            </a>
+                        </p>
+                    </div> 
+                 </div>    
+            </div>    
+        </div>
+        <?php endforeach; ?> 
+
+    </div>
+</div>
+
+<?php echo HTML::script('js/adminwall.js');; ?>
+
+
+<?php $__env->stopSection(); ?> <!-- /content-->
+<?php echo $__env->make('layouts/template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

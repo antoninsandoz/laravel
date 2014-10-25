@@ -2,7 +2,7 @@
 
 class Like extends Eloquent{
 
-	public $timestamps = true;
+	public $timestamps = false;
 
 	public function picture() 
 	{

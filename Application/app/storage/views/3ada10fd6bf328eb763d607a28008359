@@ -75,6 +75,9 @@
 
 <?php echo HTML::script('js/bootstrap.min.js');; ?>
 
+
+<!-- Script Ajax personal -->
+<?php echo $__env->yieldContent('scripts'); ?>
     
 </html>
     

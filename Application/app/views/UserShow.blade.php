@@ -30,9 +30,9 @@
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
                         @if($user->image)
-                        <img src='{{URL::to('/uploads/')}}/{{$user->image}}' />
+                        {{ HTML::image('uploads/'.$user->image, '$user->username') }}
                         @else
-                        <img src='{{URL::to('/img/')}}/user_default.png' />
+                        {{ HTML::image('img/user_default.png', 'user_default') }}
                         @endif
                     </div>
                     <a href="{{URL::to('user/image')}}"><button type="button" class="btn_image btn btn-default">Change image</button></a>

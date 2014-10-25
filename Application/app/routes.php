@@ -32,14 +32,23 @@ Route::post('login', 'LoginController@postLogin');
 Route::get('logout', 'LoginController@getLogout');
 
 //WALL
-//Route::resource('wall', 'WallController');
-Route::get('/wall/{id}/{pagination}', 'WallController@show');
-//Route::get('/wall', 'WallController@showlogged'); //if no id check if logged
-Route::get('/adminwall', 'WallController@adminshow');
+Route::get('/wall/{id}/{pagination}', 'WallController@index');
+Route::get('/bird/{id_p}', 'WallController@show');
+//admin
+Route::get('/adminwall/{id_b}', 'AdminWallController@adminindex');
+
+//like (Ajax)
+Route::get('like/{id_p}', 'LikeController@add'); 
+Route::get('dontlike/{id_p}', 'LikeController@remove');
+
+//comment (Ajax)
+Route::post('comment/new/{id_p}', 'CommentController@add');
+Route::post('comment/{id_p}', 'CommentController@update');
+Route::get('comment/delete/{id_p}', 'CommentController@remove');
 
 // the url adress don't exist
 App::missing(function()
 {
-	return View::make('page_not_found');
+	return View::make('pagenotfound');
   //return 'page_not_found';
 });

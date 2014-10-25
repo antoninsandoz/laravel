@@ -29,9 +29,11 @@
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
                         <?php if($user->image): ?>
-                        <img src='<?php echo URL::to('/uploads/'); ?>/<?php echo $user->image; ?>' />
+                        <?php echo HTML::image('uploads/'.$user->image, '$user->username'); ?>
+
                         <?php else: ?>
-                        <img src='<?php echo URL::to('/img/'); ?>/user_default.png' />
+                        <?php echo HTML::image('img/user_default.png', 'user_default'); ?>
+
                         <?php endif; ?>
                     </div>
                     <a href="<?php echo URL::to('user/image'); ?>"><button type="button" class="btn_image btn btn-default">Change image</button></a>

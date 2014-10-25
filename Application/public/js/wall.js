@@ -19,7 +19,7 @@ function wallChangeBlock() {
     var m=0;
     var blockWallSizeWith;
     var nbImage=4;
-    var margin=4;
+    var margin=5;
     var marginZ = 0;
     
     //get element and size hieght
@@ -34,15 +34,15 @@ function wallChangeBlock() {
 
     if(wallSize < 720){
         nbImage = 2;
-        margin = 8;
+        margin = 12;
     }   
     else if(wallSize < 940){
         nbImage = 3;
-        margin = 6;
+        margin = 8;
     }   
     else if(wallSize < 1140){
         nbImage = 4;
-        margin = 4;
+        margin = 5;
     }
     
     //get number of block (for loop)

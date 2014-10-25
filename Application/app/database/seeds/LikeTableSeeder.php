@@ -17,6 +17,7 @@ class likeTableSeeder extends Seeder {
 			DB::table('likes')->insert(array(
 					
 					'pic_id' => $i,
+                                        'user_id' => 1,
 					'user_name' => 'user_name' . $i,
 				));
 		}

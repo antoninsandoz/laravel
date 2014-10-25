@@ -16,6 +16,7 @@ class CreateLikesTable extends Migration {
 		Schema::create('likes', function($table) {
 			$table->increments('id');
 			$table->integer('pic_id')->unsigned(); //->unsigned() only positive values
+                        $table->integer('user_id')->unsigned(); //->unsigned() only positive values
 			$table->string('user_name', 30);
 		});
 	
