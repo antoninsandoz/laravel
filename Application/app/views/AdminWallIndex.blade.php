@@ -67,42 +67,25 @@
 </div>
 
 <div class=" container-fluid clearfix ">
-    <div id="wall" class="row">
+    <div id="wall" class="adminwall row">
         <?php $n = 0 ?>
         @foreach($pictures as $pict)      
         <?php $n++ ?>
         <div id="wall_{{$n}}" class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3">
             <div class="wall_block box">
                 <div class="wall_image_block"> 
-                    <div class="hover">
+                        @if($pict->wall == 0)
+                            <button onclick="likeFunction({{$pict->id}})" class="select_like like btn"id="like_{{$pict->id}}" type="button" >
+                        @else
+                            <button onclick="likeFunction({{$pict->id}})" class="like btn"id="like_{{$pict->id}}" type="button" >
+                        @endif
+                                <span class="glyphicon glyphicon glyphicon-heart"></span>
+                            </button>
 
-                        <div>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                <span class="glyphicon glyphicon-ban-circle"></span>
-                                </button>
-                            </a>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span>
-                                </button>
-                            </a>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                @if($pict->wall == 0)    
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                @else
-                                <span class="glyphicon glyphicon-minus-sign"></span>
-                                </button>
-                                @endif
-                            </a>
-                        </div>
-
-                    </div>
                     <a href="/test" > 
                         {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
                     </a>
-                    <div class="img_info">
+                    <div class="img_info clearfix">
                         <a href="/" ><p class="name">{{$pict->name}}</p></a>
                         <p class="date border">
                             {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}

@@ -9,6 +9,14 @@
     <li><a href="{{URL::to('/adminwall')}}">{{$picture->name }}</a></li>
 </ol>
 
+<!-- if message -->
+@if(Session::has('ok'))
+          <div class="alert alert-success">{{ Session::get('ok') }}</div>
+@endif
+@if(Session::has('error'))
+        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+@endif
+
 <div class="wall_show container-fluid clearfix ">    
     <div class="row">
         <div class="picture_block col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -92,7 +100,7 @@
                 <div id ="comment_display" class="wall_show_box box container-fluid clearfix">
                    <!--legend-->
                     <div class="legend media">
-                        <a class="user_image pull-left" href="{{URL::to('/wall')}}/{{$user->id}}">
+                        <a class="user_image pull-left" href="{{URL::to('/wall')}}/{{$user->id}}/1">
                             @if($user->image)
                                 {{ HTML::image('uploads/'.$user->image, '$user->username') }}
                             @else
@@ -100,42 +108,69 @@
                             @endif
                         </a>
                         <div class="media-body">
-                          <h4 class="media-heading">{{$user->username}}</h4>
+                            <a href="{{URL::to('/wall')}}/{{$user->id}}/1">
+                                <h4 class="media-heading">{{$user->username}}</h4>
+                            </a>
                           <p>{{$picture->legend}}</p>
                         </div>
                     </div>
                     <!--foreach comment-->
+                    @foreach($comments as $comment)
                     <div class="comment media">
-                        <a class="user_image pull-left" href="#">
-                          <img class="media-object" src="{{URL::to('/img/')}}/user_default.png" alt="...">
+                        <a class="user_image pull-left" href="{{URL::to('/wall')}}/{{$comment->user_id}}/1">
+                            @if($comment->image)
+                                {{ HTML::image('uploads/'.$comment->image, '$comment->user_name') }}
+                            @else
+                                {{ HTML::image('img/user_default.png', 'user_default') }}
+                            @endif
                         </a>
                         <div class="media-body">
-                          <h4 class="media-heading">Media heading</h4>
-                          <p>comment comment comment comment comment comment comment comment comment comment comment comment </p>
+                          <a href="{{URL::to('/wall')}}/{{$comment->user_id}}/1">
+                              <h4 class="media-heading">{{$comment->user_name}}</h4>
+                          </a>
+                          <p>{{$comment->comment}}</p>
                         </div>
                     </div>
-                    <!--Add comment-->
+                    @endforeach
                     
-                    <div class="comment media">
-                        <br/>
-                        <div class="user container-fluid clearfix">
-                            
-                                <h3 class="border-bottom">Add a comment</h3>
-                                <div class="form-horizontal" role="form"> 
-                                    <div class="form-group ">
-                                      <div class="col-sm-9 {{ $errors->has('comment') ? 'has-error has-feedback' : '' }}">
-                                          <small class="text-danger">{{ $errors->first('comment') }}</small>
-                                           {{ Form::textarea('comment', null, array('id' => 'comment_text', 'class' => 'textarea form-control', 'placeholder' => 'Your comment here...')) }}
-                                      </div>
-                                    </div>
+                 <!-- Button trigger modal -->
+                 <h3 class="border-bottom">Add a comment</h3>
+                 <button class="comment_submit btn btn-primary" data-toggle="modal" data-target="#myModal">Add a new comment</button>
+                 <br/><br/>
+                 <small class="text-danger">{{ $errors->first('comment') }}</small>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h3 class="modal-title" id="myModalLabel">Add a new comment</h3>
+                      </div>
+                        
+                        <!--Add comment windows--> 
+                        <div class="modal-body">
+                            {{ Form::open(array('url' => 'comment/new/'.$picture->id, 'method' => 'post')) }} 
+                                <div class="user container-fluid clearfix">
+
+                                        <div class="form-horizontal" role="form"> 
+                                            <div class="form-group ">
+                                              <div class="col-sm-9 {{ $errors->has('comment') ? 'has-error has-feedback' : '' }}">
+                                                  <small class="text-danger">{{ $errors->first('comment') }}</small>
+                                                   {{ Form::textarea('comment', null, array('id' => 'comment_text', 'class' => 'textarea form-control', 'placeholder' => 'Your comment here...')) }}
+                                              </div>
+                                            </div>
+                                        </div>
+
                                 </div>
-                                <button id='comment_submit' class="comment_submit btn btn-primary save">Save</button>
-                            
-                            
-                                
-                              
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button id='comment_submit' class=" btn btn-primary save">Save</button>
+                                </div>
+                            {{ Form::close() }}
                         </div>
-                    </div>
+                      
+                  </div>
+                </div>
                         
   
             <div class="empty_block col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -158,7 +193,7 @@
             var textLike = $( "#like" ).text();
                
             if(textLike == 'I like'){   
-                $.get( "../like/1", function( data ) {
+                $.get( "{{URL::to('/like')}}/{{$picture->id}}", function( data ) {
                     
                     var num = $( "#like_num" ).text();
                     num = parseInt(num);
@@ -169,7 +204,7 @@
                 });
             }
             else{
-                $.get( "../dontlike/1", function( data ) {
+                $.get( "{{URL::to('/dontlike')}}/{{$picture->id}}", function( data ) {
                     
                     var num = $( "#like_num" ).text();
                     num = parseInt(num);
@@ -181,22 +216,7 @@
             }
             
         });
-            
-        //comment function
-        $('#comment_submit').click(function() {          
-            alert('salut');
-            
-            $.post('comment/new/{{$picture->id}}', 'test=true' ,callback, 'text');
-            
-            function callback(test){
-                console.log('Success!'+test);
-            }
-            
-            
 
-        });
-
-        
     </script>
 
 @stop <!-- /script-->

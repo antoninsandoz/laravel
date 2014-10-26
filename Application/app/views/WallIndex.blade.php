@@ -29,31 +29,25 @@
 
         <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
-                <a href="#">
-                    <span class="badge pull-right">{{$user_likes}}</span>
-                    Likes
-                </a>
+                <span class="badge pull-right">{{$user_likes}}</span>
+                Likes
             </div>
         </div>
         <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
-                <a href="#">
-                    <span class="badge pull-right">{{$user_comments}}</span>
-                    Comments
-                </a>
+                <span class="badge pull-right">{{$user_comments}}</span>
+                Comments
             </div>
         </div>
         <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
-                <a href="#">
-                    <span class="badge pull-right">{{$user_pictures}}</span>
-                    Pictures
-                </a>
+                <span class="badge pull-right">{{$user_pictures}}</span>
+                Pictures
             </div>
         </div>
     </div>
 </div>
-     
+
 <div class=" container-fluid clearfix ">    
     <div id="wall" class="row">
     @if($allpictures != false)
@@ -63,42 +57,38 @@
         <?php $n++ ?>
             <div id="wall_{{$n}}" class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3">
               <div id="wall_size{{$n}}" class="thumbnail">
-                <div class="wall_image_block"> 
-                    <a href="/" >
-                        <div class="hover">
-                            <div>
-                                <a href="/" >
-                                    <button type="button" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon glyphicon-heart"></span>
-                                    </button>
-                                </a>
-                                <a href="/" >    
-                                    <button type="button" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon glyphicon-comment"></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+                <div class="wall_image_block">
+                  
+                  @if($auth)
+                        @if(in_array('like_id'.$pict->id, $like_tab) && $like_tab[0]!=false)
+                            <button onclick="likeFunction({{$pict->id}})" class="select_like like btn"id="like_{{$pict->id}}" type="button" >
+                        @else
+                            <button onclick="likeFunction({{$pict->id}})" class="like btn"id="like_{{$pict->id}}" type="button" >
+                        @endif
+                   @else
+                        <button onclick="redirectFunction()" class="like btn" type="button" >
+                   @endif   
+                            <span class="glyphicon glyphicon glyphicon-heart"></span>
+                        </button>
+                    <a href="{{URL::to('/bird')}}/{{$pict->id}}" >
                         {{ HTML::image('uploads/'.$pict->Picture_url, $pict->name) }}
                     </a>
-                    <div class="img_info">
-                        <a href="/" ><p class="name">{{$pict->name}}</p></a>
+                    <div class="clearfix  img_info">
+                        <a href="{{URL::to('/bird')}}/{{$pict->id}}" >
+                            <p class="name">{{$pict->name}}</p>
+                        </a>
                         <p class="date border">
                             {{date('d-m-Y', $pict->date)}} | {{date('h:m:s', $pict->date)}}
                         </p>
                         @if($pict->comment>0 OR $pict->like>0)
                         <p class="like_comment border">
                             @if($pict->comment>0)
-                            <a href="/">
                                 <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
                                 <span class="comment">{{$pict->comment}}</span>
-                            </a>
                             @endif
                             @if($pict->like>0)
-                            <a href="/" >
                                 <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
                                 <span class="like">{{$pict->like}}</span>
-                            </a>
                             @endif
                         </p>
                         @endif
@@ -134,3 +124,42 @@
     {{ HTML::script('js/wall.js'); }}
 
 @stop <!-- /content-->
+
+
+
+@section('scripts')
+
+    <script>
+        //like function
+        function likeFunction(pict_id){
+            
+            if($('#like_'+pict_id).hasClass('select_like')){
+                
+                $( '#like_'+pict_id ).addClass("load_like");
+
+                $.get( '{{URL::to('/dontlike')}}/'+pict_id, function( data ) {
+
+                    $( '#like_'+pict_id ).removeClass("select_like");
+                    $( '#like_'+pict_id ).removeClass("load_like");
+
+                });
+            }
+            else{
+
+                $.get( '{{URL::to('/like')}}/'+pict_id, function( data ) {
+
+                    $('#like_'+pict_id).addClass("select_like");
+
+                });
+            }
+
+        };
+        
+        function redirectFunction(){
+            alert('Please login for add likes');
+            window.location.href = "{{URL::to('/login')}}";
+        }
+
+    </script>
+
+@stop <!-- /script-->

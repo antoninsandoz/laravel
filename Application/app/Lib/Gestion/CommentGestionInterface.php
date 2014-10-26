@@ -3,7 +3,7 @@
 interface CommentGestionInterface {
 
         public function add($id, $id_p);
-        public function update($id, $id_p);
-        public function remove($id, $id_p);
+        public function remove($id_c);
+        public function belongs($id, $id_p);
         
 }

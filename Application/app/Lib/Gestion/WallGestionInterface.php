@@ -2,6 +2,6 @@
 
 interface WallGestionInterface {
 
-	public function index($id, $pagination);
+	public function index($id, $pagination, $auth);
         public function show($id_p);
 }

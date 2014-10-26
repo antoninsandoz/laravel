@@ -17,7 +17,9 @@ class CreateCommentsTable extends Migration {
 			$table->integer('pic_id')->unsigned(); //->unsigned() only positive values
 			$table->string('comment', 500);
 			$table->integer('date')->unsigned(); //format date timestamp UNIX => format : 428389200 
-			$table->string('user_name', 30);
+			$table->integer('user_id')->unsigned();
+                        $table->string('user_name', 50);
+                        $table->string('image', 50);
 			$table->string('Languages_iso', 2); // fr, en, de, ... etc..
 		});
 		

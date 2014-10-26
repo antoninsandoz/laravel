@@ -30,9 +30,9 @@
                     <label for="image" class="col-sm-3 control-label">image</label>
                     <div class="col-sm-9 user_image">
                         @if($user->image)
-                        {{ HTML::image('uploads/'.$user->image, '$user->username') }}
+                            {{ HTML::image('uploads/'.$user->image, '$user->username') }}
                         @else
-                        {{ HTML::image('img/user_default.png', 'user_default') }}
+                            {{ HTML::image('img/user_default.png', 'user_default') }}
                         @endif
                     </div>
                     <a href="{{URL::to('user/image')}}"><button type="button" class="btn_image btn btn-default">Change image</button></a>
@@ -83,25 +83,25 @@
                         <div class="checkbox">
                             <label>
                               @if($user->sex == 'women')
-                              {{Form::radio('sex', 'women', true)}}
+                                {{Form::radio('sex', 'women', true)}}
                               @else
-                              {{Form::radio('sex', 'women')}}
+                                {{Form::radio('sex', 'women')}}
                               @endif
                               Women
                             </label>
                             <label>
                               @if($user->sex == 'men')
-                              {{Form::radio('sex', 'men', true)}}
+                                {{Form::radio('sex', 'men', true)}}
                               @else
-                              {{Form::radio('sex', 'men')}}
+                                {{Form::radio('sex', 'men')}}
                               @endif
                               Men
                             </label>
                             <label>
                               @if($user->sex == 'unspecified')
-                              {{Form::radio('sex', 'unspecified', true)}}
+                                {{Form::radio('sex', 'unspecified', true)}}
                               @else
-                              {{Form::radio('sex', 'unspecified')}}
+                                {{Form::radio('sex', 'unspecified')}}
                               @endif
                               Unspecified
                             </label>

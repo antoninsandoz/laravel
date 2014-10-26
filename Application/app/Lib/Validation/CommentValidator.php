@@ -5,7 +5,7 @@ class CommentValidator extends BaseValidator {
     public function __construct()
 	{
 		$this->regles = array(
-//			'email' => 'required|exists:users'
+        		'comment' => 'required|max:1000'
 		);
 	}
 

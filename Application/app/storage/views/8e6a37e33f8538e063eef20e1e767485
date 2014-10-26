@@ -26,31 +26,25 @@
 
         <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
-                <a href="#">
-                    <span class="badge pull-right"><?php echo $user_likes; ?></span>
-                    Likes
-                </a>
+                <span class="badge pull-right"><?php echo $user_likes; ?></span>
+                Likes
             </div>
         </div>
         <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
-                <a href="#">
-                    <span class="badge pull-right"><?php echo $user_comments; ?></span>
-                    Comments
-                </a>
+                <span class="badge pull-right"><?php echo $user_comments; ?></span>
+                Comments
             </div>
         </div>
         <div class="number col-xs-4 col-sm-3 col-md-3">
             <div>
-                <a href="#">
-                    <span class="badge pull-right"><?php echo $user_pictures; ?></span>
-                    Pictures
-                </a>
+                <span class="badge pull-right"><?php echo $user_pictures; ?></span>
+                Pictures
             </div>
         </div>
     </div>
 </div>
-     
+
 <div class=" container-fluid clearfix ">    
     <div id="wall" class="row">
     <?php if($allpictures != false): ?>
@@ -60,27 +54,27 @@
         <?php $n++ ?>
             <div id="wall_<?php echo $n; ?>" class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3">
               <div id="wall_size<?php echo $n; ?>" class="thumbnail">
-                <div class="wall_image_block"> 
-                    <a href="/" >
-                        <div class="hover">
-                            <div>
-                                <a href="/" >
-                                    <button type="button" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon glyphicon-heart"></span>
-                                    </button>
-                                </a>
-                                <a href="/" >    
-                                    <button type="button" class="btn btn-sm">
-                                        <span class="glyphicon glyphicon glyphicon-comment"></span>
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
+                <div class="wall_image_block">
+                  
+                  <?php if($auth): ?>
+                        <?php if(in_array('like_id'.$pict->id, $like_tab) && $like_tab[0]!=false): ?>
+                            <button onclick="likeFunction(<?php echo $pict->id; ?>)" class="select_like like btn"id="like_<?php echo $pict->id; ?>" type="button" >
+                        <?php else: ?>
+                            <button onclick="likeFunction(<?php echo $pict->id; ?>)" class="like btn"id="like_<?php echo $pict->id; ?>" type="button" >
+                        <?php endif; ?>
+                   <?php else: ?>
+                        <button onclick="redirectFunction()" class="like btn" type="button" >
+                   <?php endif; ?>   
+                            <span class="glyphicon glyphicon glyphicon-heart"></span>
+                        </button>
+                    <a href="<?php echo URL::to('/bird'); ?>/<?php echo $pict->id; ?>" >
                         <?php echo HTML::image('uploads/'.$pict->Picture_url, $pict->name); ?>
 
                     </a>
-                    <div class="img_info">
-                        <a href="/" ><p class="name"><?php echo $pict->name; ?></p></a>
+                    <div class="clearfix  img_info">
+                        <a href="<?php echo URL::to('/bird'); ?>/<?php echo $pict->id; ?>" >
+                            <p class="name"><?php echo $pict->name; ?></p>
+                        </a>
                         <p class="date border">
                             <?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?>
 
@@ -88,16 +82,12 @@
                         <?php if($pict->comment>0 OR $pict->like>0): ?>
                         <p class="like_comment border">
                             <?php if($pict->comment>0): ?>
-                            <a href="/">
                                 <span class="glyphicon glyphicon-comment"></span><!-- Icone -->
                                 <span class="comment"><?php echo $pict->comment; ?></span>
-                            </a>
                             <?php endif; ?>
                             <?php if($pict->like>0): ?>
-                            <a href="/" >
                                 <span class="glyphicon glyphicon-heart"></span><!-- Icone -->
                                 <span class="like"><?php echo $pict->like; ?></span>
-                            </a>
                             <?php endif; ?>
                         </p>
                         <?php endif; ?>
@@ -134,4 +124,43 @@
 
 
 <?php $__env->stopSection(); ?> <!-- /content-->
+
+
+
+<?php $__env->startSection('scripts'); ?>
+
+    <script>
+        //like function
+        function likeFunction(pict_id){
+            
+            if($('#like_'+pict_id).hasClass('select_like')){
+                
+                $( '#like_'+pict_id ).addClass("load_like");
+
+                $.get( '<?php echo URL::to('/dontlike'); ?>/'+pict_id, function( data ) {
+
+                    $( '#like_'+pict_id ).removeClass("select_like");
+                    $( '#like_'+pict_id ).removeClass("load_like");
+
+                });
+            }
+            else{
+
+                $.get( '<?php echo URL::to('/like'); ?>/'+pict_id, function( data ) {
+
+                    $('#like_'+pict_id).addClass("select_like");
+
+                });
+            }
+
+        };
+        
+        function redirectFunction(){
+            alert('Please login for add likes');
+            window.location.href = "<?php echo URL::to('/login'); ?>";
+        }
+
+    </script>
+
+<?php $__env->stopSection(); ?> <!-- /script-->
 <?php echo $__env->make('layouts/template', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

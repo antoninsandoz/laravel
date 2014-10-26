@@ -55,7 +55,8 @@ li {
 
 
 
-/* HEADER */  
+/* HEADER */ 
+/* NAV */ 
 .navbar{
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),0 1px 0 0 rgba(0, 0, 0, 0.1);
     background-color: #FFF;
@@ -67,6 +68,29 @@ li {
     margin-right: 10px;
 }
 
+.user-nav{
+    float: right;
+}
+.user-nav>li{
+border-left: 1px solid #CCC;
+margin-left: 5px;
+}
+
+.user-nav li.dropdown{
+border-right: 1px solid #CCC;
+margin-right: 15px;
+}
+
+
+.nav-user_image img{
+    height: 25px;
+    margin-right: 10px;
+    width: 25px;
+    border-radius: 15px;
+    float: left;
+    top: -3px;
+    position: relative;
+}
 
 .message_box{
     padding: 15px;
@@ -138,29 +162,6 @@ font-weight: bold;
     margin-bottom: 10px;
 }
 
-
-
-.adminwall .nav>li.dropdown {
-    background: #428BCA;
-    top: -2px;
-    height: 68px;
-    position: absolute;
-    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.32);
-}
-
-.adminwall .nav>li.dropdown>a:hover {
-    background: #428BCA;
-}
-
-.adminwall .nav .open>a{
-    background: #428BCA;
-}
-
-.adminwall .nav .dropdown>a{
-    color: white;
-    text-align: center;
-}
-
 .wall div.row div.city {
    margin-top: 12px;
    margin-bottom: 15px;
@@ -190,12 +191,12 @@ font-weight: bold;
     padding: 10px;
 }
 
-.wall div.row div.number a{
+.wall div.row div.number{
     font-size: 14px;
     color: #428bca;
 }
 
-.wall div.row div.number a span{/*badge*/
+.wall div.row div.number span{/*badge*/
     background-color: #428bca;
     font-size: 14px;
     color: white;
@@ -229,15 +230,17 @@ font-weight: bold;
 /*hover*/
 .wall_block div.hover{
     
-    width: 226px;
-    height: 50px;
-    position: absolute; 
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    
+
+    
     
 }
 
 .wall_block div.hover:hover{
-    position: absolute;   
-    
+ 
 }
 
 .wall_block div.hover div{
@@ -246,9 +249,12 @@ font-weight: bold;
 
 .wall_block div.hover:hover div{
     display: block;
-    
+
 }
 
+.wall_block div.wall_image_block>a{ /*button colors*/
+    float: left;
+}
 
 .wall_block div.wall_image_block div.hover a{ /*button colors*/
     color: #FFF;
@@ -257,18 +263,21 @@ font-weight: bold;
 .wall_block div.hover button{
     margin: 10px;
     float: right;
-    background: linear-gradient(to bottom,#428bca,#1C6BAF 100%);
-    border: none;
 }
 
 .wall_block div.hover button span{
   
 }
+.wall_block div.hover button{
+    margin-right: 0px;
+    background: white;
+    border: 1px solid #AAA;
+}
 
 .wall_block div.hover button:hover{
 
-    background: linear-gradient(to bottom,#428bca,#1C6BAF 100%);
-    border: none;
+    background: linear-gradient(to bottom,#428BCA,#4592D3 100%);
+
 }
 
 .wall_block img{
@@ -281,6 +290,7 @@ font-weight: bold;
 /*Wall image info Block*/
 .wall_block div.img_info{
     padding: 15px;
+
 }
 
 .wall_block div p.border{
@@ -292,6 +302,7 @@ font-weight: bold;
      color: #444;
     font-size: 14px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 .wall_block div.img_info p.date{
@@ -302,28 +313,40 @@ font-weight: bold;
 }
 
 .wall_block div.img_info p span.glyphicon{
-
+    color: #428BCA;
 }
 
+.wall_block div.img_info p span.glyphicon{
+    color: #428BCA;
+    margin-right: 5px;
+    margin-left: 5px;
+}
 .wall_block div.img_info p.like_comment{
-    
-}
-
-.wall_block div.img_info p.like_comment span{
+    color: #428BCA;
     font-weight: bold;
-    padding-left: 5px;
-    
+
 }
 
-.wall_block div.img_info p.like_comment span.like{
-    margin-right: 10px;
-}
-.wall_block div.img_info p.like_comment span.comment{
-    margin-right: 10px;
+.wall_block .wall_image_block button.like{
+    float: left;
+    position: absolute;
+    right: 30px;
+    top: 10px; 
+    background: #FFF;
+    border: 1px solid #AAA;
 }
 
-.wall_block div.img_info p.legend {
+.wall_block .wall_image_block button.like:hover{
+    background: #428BCA;
+    color: white;
 
+}
+.wall_block .wall_image_block button.select_like{
+    background-image: -webkit-linear-gradient(top,#D9534F 0,#C12E2A 100%);
+}
+
+.wall_block .wall_image_block button.select_like:hover{
+    background-image: -webkit-linear-gradient(top,#D9534F 0,#C12E2A 100%);
 }
 
 /**************************/
@@ -402,12 +425,42 @@ padding-right: 15px;
 
 .wall_show .comment_block .textarea{
     max-width: 560px;
-    width: 560px;
+    width: 540px;
     height: 100px;
 }
 
 .wall_show .comment_block .comment_submit{
-    margin-bottom: 10px;
+float: left;
+}
+
+
+/**************************/
+/*AdminWall*/
+
+.adminwall .nav>li.dropdown {
+    background: #428BCA;
+    top: -2px;
+    height: 68px;
+    position: absolute;
+    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.32);
+}
+
+.adminwall .nav>li.dropdown>a:hover {
+    background: #428BCA;
+}
+
+.adminwall .nav .open>a{
+    background: #428BCA;
+}
+
+.adminwall .nav .dropdown>a{
+    color: white;
+    text-align: center;
+}
+
+.adminwall .wall_block .wall_image_block button.like {
+top: 25px;
+
 }
 
 
@@ -556,7 +609,7 @@ LG = 123x164
     padding-right: 17px;
 }
 
-.wall_block img{
+.wall_block .wall_image_block img{
     /*MD = 220x293*/
     width: 218px;
     height: 291px;

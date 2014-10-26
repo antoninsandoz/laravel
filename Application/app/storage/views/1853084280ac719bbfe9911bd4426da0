@@ -6,6 +6,14 @@
     <li><a href="<?php echo URL::to('/adminwall'); ?>"><?php echo $picture->name; ?></a></li>
 </ol>
 
+<!-- if message -->
+<?php if(Session::has('ok')): ?>
+          <div class="alert alert-success"><?php echo Session::get('ok'); ?></div>
+<?php endif; ?>
+<?php if(Session::has('error')): ?>
+        <div class="alert alert-danger"><?php echo Session::get('error'); ?></div>
+<?php endif; ?>
+
 <div class="wall_show container-fluid clearfix ">    
     <div class="row">
         <div class="picture_block col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -94,7 +102,7 @@
                 <div id ="comment_display" class="wall_show_box box container-fluid clearfix">
                    <!--legend-->
                     <div class="legend media">
-                        <a class="user_image pull-left" href="<?php echo URL::to('/wall'); ?>/<?php echo $user->id; ?>">
+                        <a class="user_image pull-left" href="<?php echo URL::to('/wall'); ?>/<?php echo $user->id; ?>/1">
                             <?php if($user->image): ?>
                                 <?php echo HTML::image('uploads/'.$user->image, '$user->username'); ?>
 
@@ -104,43 +112,73 @@
                             <?php endif; ?>
                         </a>
                         <div class="media-body">
-                          <h4 class="media-heading"><?php echo $user->username; ?></h4>
+                            <a href="<?php echo URL::to('/wall'); ?>/<?php echo $user->id; ?>/1">
+                                <h4 class="media-heading"><?php echo $user->username; ?></h4>
+                            </a>
                           <p><?php echo $picture->legend; ?></p>
                         </div>
                     </div>
                     <!--foreach comment-->
+                    <?php foreach($comments as $comment): ?>
                     <div class="comment media">
-                        <a class="user_image pull-left" href="#">
-                          <img class="media-object" src="<?php echo URL::to('/img/'); ?>/user_default.png" alt="...">
+                        <a class="user_image pull-left" href="<?php echo URL::to('/wall'); ?>/<?php echo $comment->user_id; ?>/1">
+                            <?php if($comment->image): ?>
+                                <?php echo HTML::image('uploads/'.$comment->image, '$comment->user_name'); ?>
+
+                            <?php else: ?>
+                                <?php echo HTML::image('img/user_default.png', 'user_default'); ?>
+
+                            <?php endif; ?>
                         </a>
                         <div class="media-body">
-                          <h4 class="media-heading">Media heading</h4>
-                          <p>comment comment comment comment comment comment comment comment comment comment comment comment </p>
+                          <a href="<?php echo URL::to('/wall'); ?>/<?php echo $comment->user_id; ?>/1">
+                              <h4 class="media-heading"><?php echo $comment->user_name; ?></h4>
+                          </a>
+                          <p><?php echo $comment->comment; ?></p>
                         </div>
                     </div>
-                    <!--Add comment-->
+                    <?php endforeach; ?>
                     
-                    <div class="comment media">
-                        <br/>
-                        <div class="user container-fluid clearfix">
-                            
-                                <h3 class="border-bottom">Add a comment</h3>
-                                <div class="form-horizontal" role="form"> 
-                                    <div class="form-group ">
-                                      <div class="col-sm-9 <?php echo $errors->has('comment') ? 'has-error has-feedback' : ''; ?>">
-                                          <small class="text-danger"><?php echo $errors->first('comment'); ?></small>
-                                           <?php echo Form::textarea('comment', null, array('id' => 'comment_text', 'class' => 'textarea form-control', 'placeholder' => 'Your comment here...')); ?>
+                 <!-- Button trigger modal -->
+                 <h3 class="border-bottom">Add a comment</h3>
+                 <button class="comment_submit btn btn-primary" data-toggle="modal" data-target="#myModal">Add a new comment</button>
+                 <br/><br/>
+                 <small class="text-danger"><?php echo $errors->first('comment'); ?></small>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h3 class="modal-title" id="myModalLabel">Add a new comment</h3>
+                      </div>
+                        
+                        <!--Add comment windows--> 
+                        <div class="modal-body">
+                            <?php echo Form::open(array('url' => 'comment/new/'.$picture->id, 'method' => 'post')); ?> 
+                                <div class="user container-fluid clearfix">
 
-                                      </div>
-                                    </div>
+                                        <div class="form-horizontal" role="form"> 
+                                            <div class="form-group ">
+                                              <div class="col-sm-9 <?php echo $errors->has('comment') ? 'has-error has-feedback' : ''; ?>">
+                                                  <small class="text-danger"><?php echo $errors->first('comment'); ?></small>
+                                                   <?php echo Form::textarea('comment', null, array('id' => 'comment_text', 'class' => 'textarea form-control', 'placeholder' => 'Your comment here...')); ?>
+
+                                              </div>
+                                            </div>
+                                        </div>
+
                                 </div>
-                                <button id='comment_submit' class="comment_submit btn btn-primary save">Save</button>
-                            
-                            
-                                
-                              
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  <button id='comment_submit' class=" btn btn-primary save">Save</button>
+                                </div>
+                            <?php echo Form::close(); ?>
+
                         </div>
-                    </div>
+                      
+                  </div>
+                </div>
                         
   
             <div class="empty_block col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -163,7 +201,7 @@
             var textLike = $( "#like" ).text();
                
             if(textLike == 'I like'){   
-                $.get( "../like/1", function( data ) {
+                $.get( "<?php echo URL::to('/like'); ?>/<?php echo $picture->id; ?>", function( data ) {
                     
                     var num = $( "#like_num" ).text();
                     num = parseInt(num);
@@ -174,7 +212,7 @@
                 });
             }
             else{
-                $.get( "../dontlike/1", function( data ) {
+                $.get( "<?php echo URL::to('/dontlike'); ?>/<?php echo $picture->id; ?>", function( data ) {
                     
                     var num = $( "#like_num" ).text();
                     num = parseInt(num);
@@ -186,22 +224,7 @@
             }
             
         });
-            
-        //comment function
-        $('#comment_submit').click(function() {          
-            alert('salut');
-            
-            $.post('comment/new/<?php echo $picture->id; ?>', 'test=true' ,callback, 'text');
-            
-            function callback(test){
-                console.log('Success!'+test);
-            }
-            
-            
 
-        });
-
-        
     </script>
 
 <?php $__env->stopSection(); ?> <!-- /script-->

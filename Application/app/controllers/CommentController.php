@@ -20,22 +20,46 @@ class CommentController extends BaseController {
 	}
         
         
-	public function add($id_P)
+	public function add($id_p)
 	{   
-            $data = $_POST['test'];
-            return $test;
+            if (Auth::check())
+            {
+                if ($this->comment_validation->fails()) {
+                    return Redirect::to('bird/'.$id_p)
+                    ->withInput()
+                    ->with('error','Comment erreurs : Please respect : Max 1000 letters')
+                    ->withErrors($this->comment_validation->errors());
+                } 
+                else{
+                    $id = Auth::id();
+                    $this->comment_gestion->add($id, $id_p);
+                    return Redirect::to('bird/'.$id_p);
+                }
+            }
+            else
+                return Redirect::to('login')
+                ->with('error','Please login');
            		
 	}
         
-        public function update()
+        public function remove($id_c)
 	{   
-            
-           		
-	}
-        
-        public function remove()
-	{   
-            
+           if (Auth::check())
+            {
+                $id = Auth::id();
+                $belongstouser = $this->comment_gestion->belongs($id, $id_c);
+                
+                if($belongstouser){
+                    $belongstouser = $this->comment_gestion->remove($id_c);
+                }
+                else{
+                    return Redirect::to('bird/'.$id_p)
+                        ->with('error',"You can't delete this comment");
+                }
+            }
+            else
+                return Redirect::to('login')
+                ->with('error','Please login'); 
            		
 	}
 

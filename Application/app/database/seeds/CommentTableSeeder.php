@@ -19,7 +19,8 @@ class CommentTableSeeder extends Seeder {
 					'pic_id' => $i,
 					'comment' => 'comment text text text text text text text text text' . $i,
 					'date' => $time,
-					'user_name' => 'user_name' . $i,
+					'user_id' => 1,
+                                        'user_name' => 'UserName1',
 					'Languages_iso' => 'fr'
 				));
 		}

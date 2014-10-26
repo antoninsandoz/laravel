@@ -65,43 +65,26 @@
 </div>
 
 <div class=" container-fluid clearfix ">
-    <div id="wall" class="row">
+    <div id="wall" class="adminwall row">
         <?php $n = 0 ?>
         <?php foreach($pictures as $pict): ?>      
         <?php $n++ ?>
         <div id="wall_<?php echo $n; ?>" class="wall_block col-xs-6 col-sm-4 col-md-3 col-lg-3">
             <div class="wall_block box">
                 <div class="wall_image_block"> 
-                    <div class="hover">
+                        <?php if($pict->wall == 0): ?>
+                            <button onclick="likeFunction(<?php echo $pict->id; ?>)" class="select_like like btn"id="like_<?php echo $pict->id; ?>" type="button" >
+                        <?php else: ?>
+                            <button onclick="likeFunction(<?php echo $pict->id; ?>)" class="like btn"id="like_<?php echo $pict->id; ?>" type="button" >
+                        <?php endif; ?>
+                                <span class="glyphicon glyphicon glyphicon-heart"></span>
+                            </button>
 
-                        <div>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                <span class="glyphicon glyphicon-ban-circle"></span>
-                                </button>
-                            </a>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                    <span class="glyphicon glyphicon-comment"></span>
-                                </button>
-                            </a>
-                            <a href="/" >
-                                <button type="button" class="btn btn-sm">
-                                <?php if($pict->wall == 0): ?>    
-                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                <?php else: ?>
-                                <span class="glyphicon glyphicon-minus-sign"></span>
-                                </button>
-                                <?php endif; ?>
-                            </a>
-                        </div>
-
-                    </div>
                     <a href="/test" > 
                         <?php echo HTML::image('uploads/'.$pict->Picture_url, $pict->name); ?>
 
                     </a>
-                    <div class="img_info">
+                    <div class="img_info clearfix">
                         <a href="/" ><p class="name"><?php echo $pict->name; ?></p></a>
                         <p class="date border">
                             <?php echo date('d-m-Y', $pict->date); ?> | <?php echo date('h:m:s', $pict->date); ?>

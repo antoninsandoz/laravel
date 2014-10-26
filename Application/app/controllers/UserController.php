@@ -93,7 +93,7 @@ class UserController extends BaseController {
                         if ($this->pass_update_validation->fails($id)) {
                         return Redirect::action('UserController@password')
                         ->withInput()
-                        ->with('ok','Erreurs')
+                        ->with('error','Erreurs')
                         ->withErrors($this->pass_update_validation->errors());
                         } 
                         else {
@@ -107,7 +107,7 @@ class UserController extends BaseController {
                     if ($this->update_validation->fails($id)) {
                       return Redirect::to('user')
                       ->withInput()
-                      ->with('ok','Erreurs the fields are not correct')
+                      ->with('error','Erreurs the fields are not correct')
                       ->withErrors($this->update_validation->errors());
 
                     } else {

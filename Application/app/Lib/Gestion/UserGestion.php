@@ -13,8 +13,6 @@ class UserGestion implements UserGestionInterface {
 
             $user->username = Input::get('username');
             $user->email = Input::get('email_new');
-            //$user->image = Input::get('image');
-            //$user->city = Input::get('city');
             $user->country = Input::get('country');
             $user->sex = Input::get('sex');
             $user->Languages_iso = Input::get('Languages_iso');
